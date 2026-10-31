@@ -392,6 +392,12 @@
             .dn-splash-road i { animation: none; transform: translateX(40%); }
         }
 
+        /* Podnožje na telefonu: tekst ne ulazi ispod plutajućih dugmadi */
+        @media (max-width: 640px) {
+            footer .border-t.pt-6 { padding-right: 72px; }
+            footer { padding-bottom: 16px; }
+        }
+
         /* Pristupačnost */
         :focus-visible { outline: 3px solid #F59E0B; outline-offset: 3px; }
         @media (prefers-reduced-motion: reduce) {
