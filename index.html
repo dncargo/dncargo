@@ -594,7 +594,7 @@
 
     <!-- MOBILE DRAWER NAVIGATION -->
     <div id="mobile-drawer" class="fixed inset-0 bg-navy-950/80 z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex justify-end">
-        <div id="drawer-panel" class="w-4/5 max-w-xs bg-white h-full p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
+        <div id="drawer-panel" class="w-4/5 max-w-xs bg-white h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
             <div>
                 <div class="flex items-center justify-between border-b pb-4 mb-6">
                     <video src="intro.mp4" class="h-8 w-auto object-contain" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
@@ -610,6 +610,22 @@
                     <a href="#lokacija" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">Lokacija na Mapi</a>
                     <a href="#kontakt" class="drawer-link hover:text-amber-500 py-2">Kontakt</a>
                 </nav>
+
+                <div class="mt-6 pt-5 border-t border-slate-100">
+                    <h4 class="text-[11px] font-extrabold uppercase tracking-widest text-slate-400 mb-3">Naše aplikacije</h4>
+                    <div class="flex flex-col gap-2.5">
+                        <a href="DN_Cargo.apk" download="DN_Cargo.apk" class="flex items-center gap-3 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-400 rounded-xl px-4 py-3 transition">
+                            <i class="fa-brands fa-android text-2xl text-emerald-600"></i>
+                            <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Android</span><span class="block text-[11px] text-slate-500">Preuzmi aplikaciju (.apk)</span></span>
+                            <i class="fa-solid fa-download text-slate-400"></i>
+                        </a>
+                        <a href="DN_Cargo.zip" download="DN_Cargo.zip" class="flex items-center gap-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-400 rounded-xl px-4 py-3 transition">
+                            <i class="fa-brands fa-windows text-2xl text-sky-600"></i>
+                            <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Windows</span><span class="block text-[11px] text-slate-500">Preuzmi aplikaciju (.zip)</span></span>
+                            <i class="fa-solid fa-download text-slate-400"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div class="space-y-4 pt-6 border-t border-slate-100">

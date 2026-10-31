@@ -1,5 +1,5 @@
 /* DN Cargo - jednostavan service worker (rad i sa slabom vezom) */
-const CACHE = 'dncargo-v1';
+const CACHE = 'dncargo-v2';
 const CORE = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {
@@ -18,7 +18,7 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;          // spoljni resursi idu normalno
-  if (url.pathname.endsWith('.mp4')) return;            // video se ne kešira
+  if (/\.(mp4|apk|zip|msix|msixbundle|appxbundle)$/i.test(url.pathname)) return; // veliki fajlovi i preuzimanja se ne keširaju
 
   // Stranica: prvo mreža (uvek sveža verzija), a bez veze keš
   if (req.mode === 'navigate') {
