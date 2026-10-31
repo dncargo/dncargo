@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Česta pitanja (FAQ) | DN Cargo Vranje</title>
+    <meta name="description" content="Odgovori na najčešća pitanja o kombi prevozu robe: nosivost, prevoz u EU, osiguranje, GPS praćenje, dokumentacija, ponuda i kontakt.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="canonical" href="https://www.dncargo.sajt.net/FAQ.html">
+    <link rel="icon" href="3120.jpg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background: #0B132B; font-family: 'Poppins', sans-serif; color: #fff; }
+        .pg-header { position: sticky; top: 0; z-index: 40; background: rgba(11,19,43,.96); backdrop-filter: blur(10px); border-bottom: 2px solid rgba(245,158,11,.55); }
+        .pg-header-in { max-width: 1200px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+        .pg-back { color: #fff; text-decoration: none; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid rgba(255,255,255,.25); border-radius: 9999px; transition: background .2s; }
+        .pg-back:hover { background: rgba(245,158,11,.2); border-color: #F59E0B; }
+        .pg-logo { height: 48px; width: auto; display: block; }
+        .dn-lang { display: inline-flex; border: 1px solid rgba(255,255,255,.35); border-radius: 9999px; overflow: hidden; }
+        .dn-lang button { padding: 6px 12px; font: 700 12px 'Poppins', sans-serif; letter-spacing: .04em; color: #fff; background: transparent; border: 0; cursor: pointer; }
+        .dn-lang button:hover { background: rgba(255,255,255,.12); }
+        .dn-lang button.active { background: #F59E0B; color: #0B132B; }
+        .dn-btn { display: inline-flex; align-items: center; gap: 8px; font: 700 12px 'Poppins', sans-serif; padding: 9px 16px; border-radius: 10px; text-decoration: none; cursor: pointer; transition: transform .2s, background .2s; border: 1px solid transparent; }
+        .dn-btn:hover { transform: translateY(-2px); }
+        .dn-btn-violet { background: rgba(139,92,246,.2); color: #c4b5fd; border-color: rgba(139,92,246,.55); }
+        .dn-btn-violet:hover { background: rgba(139,92,246,.35); }
+        .dn-btn-cyan { background: rgba(6,182,212,.18); color: #67e8f9; border-color: rgba(6,182,212,.55); }
+        .dn-btn-cyan:hover { background: rgba(6,182,212,.32); }
+        .dn-home-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #F59E0B; color: #0F172A; font: 800 14px 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; padding: 15px 20px; border-radius: 14px; box-shadow: 0 12px 24px -10px rgba(245,158,11,.55); transition: transform .2s, background .2s; }
+        .dn-home-btn:hover { background: #fbbf24; transform: translateY(-2px); }
+        .pg-footer { text-align: center; padding: 26px 20px 34px; font-size: 12px; color: #94a3b8; border-top: 1px solid rgba(255,255,255,.08); }
+        .pg-footer b { color: #F59E0B; }
+        /* Pregled dokumenta */
+        #doc-viewer { position: fixed; inset: 0; z-index: 100; display: none; flex-direction: column; background: rgba(2,6,23,.94); }
+        #doc-viewer.open { display: flex; }
+        .dv-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; background: #0B132B; border-bottom: 2px solid rgba(245,158,11,.55); }
+        .dv-bar h3 { margin: 0; font: 800 15px 'Montserrat', sans-serif; }
+        .dv-bar small { display: block; font-size: 11px; color: #94a3b8; font-weight: 500; font-family: 'Poppins', sans-serif; }
+        .dv-close { width: 42px; height: 42px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.3); background: transparent; color: #fff; font-size: 26px; line-height: 1; cursor: pointer; }
+        .dv-close:hover { background: #F59E0B; color: #0B132B; border-color: #F59E0B; }
+        .dv-body { flex: 1; overflow: auto; padding: 18px 12px 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; -webkit-overflow-scrolling: touch; }
+        .dv-body figure { margin: 0; width: min(900px, 100%); }
+        .dv-body img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.5); -webkit-user-drag: none; user-select: none; }
+        .dv-body figcaption { text-align: center; font-size: 11px; color: #94a3b8; margin-top: 6px; }
+
+        .dn-cta { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 14px; padding:10px 16px; text-align:center; text-decoration:none; color:#0B132B; font-weight:700; font-size:14px; line-height:1.3; border-top:3px solid #0B132B; background:linear-gradient(90deg,#F59E0B,#F97316,#F59E0B); background-size:200% 100%; animation:dn-cta-bg 7s linear infinite; }
+        .dn-cta:hover { filter:brightness(1.08); }
+        .dn-cta i { font-size:18px; transform-origin:50% 60%; animation:dn-cta-ring 2s ease-in-out infinite; }
+        .dn-cta b { background:#0B132B; color:#F59E0B; padding:4px 12px; border-radius:9999px; margin-left:4px; white-space:nowrap; letter-spacing:.02em; }
+        @keyframes dn-cta-bg { to { background-position:200% 0; } }
+        @keyframes dn-cta-ring { 0%,55%,100% { transform:rotate(0); } 10%,30% { transform:rotate(-18deg); } 20%,40% { transform:rotate(18deg); } }
+        @media (prefers-reduced-motion: reduce) { .dn-cta, .dn-cta i { animation:none; } }
+        .dn-faq-btn { background:transparent !important; color:#F59E0B !important; border:2px solid #F59E0B; }
+        .dn-faq-btn:hover { background:rgba(245,158,11,.15) !important; }
+    
+        .faq-wrap { max-width: 860px; margin: 0 auto; padding: 56px 20px 40px; }
+        .faq-tag { display:inline-block; background:rgba(245,158,11,.2); border:1px solid rgba(245,158,11,.4); color:#F59E0B; padding:6px 16px; border-radius:50px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+        .faq-wrap h1 { font:900 clamp(26px,5vw,38px)/1.2 'Montserrat',sans-serif; margin:16px 0 0; }
+        .faq-bar { width:80px; height:4px; background:linear-gradient(to right,#F59E0B,#EA580C); margin:20px 0 18px; border-radius:2px; }
+        .faq-lead { color:#cbd5e1; font-size:14px; line-height:1.7; margin:0 0 30px; }
+        .faq-list { display:flex; flex-direction:column; gap:12px; counter-reset:q; }
+        .faq-item { background:rgba(30,41,59,.85); border:1px solid rgba(255,255,255,.14); border-radius:16px; overflow:hidden; transition:border-color .25s, box-shadow .25s; }
+        .faq-item[open] { border-color:rgba(245,158,11,.55); box-shadow:0 14px 30px -14px rgba(0,0,0,.6); }
+        .faq-item summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:16px 18px; font:700 15px/1.4 'Montserrat',sans-serif; color:#fff; }
+        .faq-item summary::-webkit-details-marker { display:none; }
+        .faq-item summary::before { counter-increment:q; content:counter(q); flex:0 0 30px; height:30px; border-radius:9px; background:#F59E0B; color:#0F172A; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; }
+        .faq-item summary span { flex:1; }
+        .faq-item summary i { color:#F59E0B; transition:transform .3s; }
+        .faq-item[open] summary i { transform:rotate(180deg); }
+        .faq-item summary:hover { background:rgba(255,255,255,.04); }
+        .faq-a { padding:0 18px 18px 62px; color:#cbd5e1; font-size:14px; line-height:1.7; }
+        .faq-a p { margin:0; }
+        .faq-item[open] .faq-a { animation:faq-in .3s ease; }
+        @keyframes faq-in { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+        .faq-box { margin-top:36px; background:linear-gradient(135deg,rgba(30,41,59,.9),rgba(15,23,42,.9)); border:1px solid rgba(245,158,11,.3); border-radius:24px; padding:28px; text-align:center; }
+        .faq-box h3 { margin:0 0 8px; font:800 20px 'Montserrat',sans-serif; }
+        .faq-box p { margin:0 0 18px; color:#cbd5e1; font-size:13px; }
+        .faq-box .row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+        .faq-box a { flex:1 1 200px; max-width:260px; text-align:center; padding:12px; border-radius:12px; font-weight:800; font-size:12px; text-decoration:none; text-transform:uppercase; }
+        .faq-box .a1 { background:#F59E0B; color:#0F172A; }
+        .faq-box .a2 { background:rgba(255,255,255,.1); color:#fff; border:1px solid rgba(255,255,255,.2); }
+        .faq-links { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+        .faq-links a { flex:1 1 240px; }
+        @media (max-width:520px) { .faq-a { padding-left:18px; } }
+        @media (prefers-reduced-motion: reduce) { .faq-item[open] .faq-a { animation:none; } }
+    </style>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Kolika je nosivost i zapremina vaših kombi vozila?", "acceptedAnswer": {"@type": "Answer", "text": "Naša flota se sastoji od 18 modernih kombi vozila sa ceradom do 3,5 tone. Standardni kombiji imaju nosivost do 1.500 kg i kapacitet od 8 evro paleta, dok produženi (mega) modeli primaju do 10 evro paleta uz nosivost do 1.400 kg."}}, {"@type": "Question", "name": "Da li vršite prevoz samo u Srbiji ili i u inostranstvu (EU)?", "acceptedAnswer": {"@type": "Answer", "text": "Vršimo kombi prevoz robe na teritoriji cele Srbije, kao i redovne međunarodne ture ka zemljama Evropske unije i regiona."}}, {"@type": "Question", "name": "Da li je moja roba osigurana tokom transporta?", "acceptedAnswer": {"@type": "Answer", "text": "Da. Transporti su pokriveni važećim CMR osiguranjem, što vam pruža sigurnost i finansijsku zaštitu robe u tranzitu. Detalje o pokriću rado ćemo vam objasniti pre polaska."}}, {"@type": "Question", "name": "Da li mogu pratiti gde se nalazi vozilo u realnom vremenu?", "acceptedAnswer": {"@type": "Answer", "text": "Da. Sva vozila iz naše flote opremljena su GPS uređajima, što omogućava 24/7 nadzor i precizne informacije o statusu vaše pošiljke."}}, {"@type": "Question", "name": "Koliko brzo možete organizovati utovar nakon poziva?", "acceptedAnswer": {"@type": "Answer", "text": "Zahvaljujući floti od 18 vozila, u mogućnosti smo da odgovorimo na hitne zahteve (ekspresne ture) i organizujemo utovar u najkraćem mogućem roku, često i istog dana."}}, {"@type": "Question", "name": "Šta je sve potrebno od dokumentacije za međunarodni prevoz?", "acceptedAnswer": {"@type": "Answer", "text": "Za standardni prevoz potrebno je obezbediti tovarni list (CMR) i fakturu ili otpremnicu za robu. Naš tim pruža podršku oko prateće dokumentacije i carinskog posredovanja."}}, {"@type": "Question", "name": "Kako mogu da dobijem tačnu ponudu za prevoz?", "acceptedAnswer": {"@type": "Answer", "text": "Cenu možete okvirno izračunati pomoću Kalkulatora na sajtu, ili nas pozvati ili kontaktirati putem Vibera i WhatsApp-a, pa ćemo vam dati preciznu ponudu na osnovu relacije."}}, {"@type": "Question", "name": "Gde se nalazite i gde vam je sedište?", "acceptedAnswer": {"@type": "Answer", "text": "Naše zvanično sedište je u Vranju (Ratka Sofijanića 1), a kancelarija se nalazi u ul. Kosovskoj br. 43 u Vranju. Možete nas posetiti radnim danima i subotom od 08:00 do 18:00h."}}, {"@type": "Question", "name": "Na koje sve načine vas mogu kontaktirati?", "acceptedAnswer": {"@type": "Answer", "text": "Možete nas kontaktirati telefonom na brojeve 069 / 650-040 i 062 / 813-1803, preko Vibera i WhatsApp-a na broj 069 / 650-040, porukom preko kontakt forme na sajtu ili na email danijelnedeljkovic.dn@gmail.com."}}]}</script>
+</head>
+<body>
+<header class="pg-header">
+        <div class="pg-header-in">
+            <a href="index.html" class="pg-back"><i class="fa-solid fa-arrow-left"></i> <span>Nazad na početnu</span></a>
+            <video class="pg-logo" src="intro.mp4" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
+            <div class="dn-lang" role="group" aria-label="Language" data-no-i18n>
+                <button type="button" data-setlang="sr">SR</button>
+                <button type="button" data-setlang="en">EN</button>
+                <button type="button" data-setlang="de">DE</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="faq-wrap">
+        <span class="faq-tag">Često postavljana pitanja</span>
+        <h1>Česta pitanja o kombi prevozu</h1>
+        <div class="faq-bar"></div>
+        <p class="faq-lead">Pre nego što angažujete kombi, ovde su odgovori na pitanja koja nam klijenti najčešće postavljaju.</p>
+
+        <div class="faq-list">
+            <details class="faq-item" name="faq" open>
+                <summary><span>Kolika je nosivost i zapremina vaših kombi vozila?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Naša flota se sastoji od 18 modernih kombi vozila sa ceradom do 3,5 tone. Standardni kombiji imaju nosivost do 1.500 kg i kapacitet od 8 evro paleta, dok produženi (mega) modeli primaju do 10 evro paleta uz nosivost do 1.400 kg.</p></div>
+            </details>
+            <details class="faq-item" name="faq">
+                <summary><span>Da li vršite prevoz samo u Srbiji ili i u inostranstvu (EU)?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Vršimo kombi prevoz robe na teritoriji cele Srbije, kao i redovne međunarodne ture ka zemljama Evropske unije i regiona.</p></div>
+            </details>
+            <details class="faq-item" name="faq">
+                <summary><span>Da li je moja roba osigurana tokom transporta?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Da. Transporti su pokriveni važećim CMR osiguranjem, što vam pruža sigurnost i finansijsku zaštitu robe u tranzitu. Detalje o pokriću rado ćemo vam objasniti pre polaska.</p></div>
+            </details>
+            <details class="faq-item" name="faq">
+                <summary><span>Da li mogu pratiti gde se nalazi vozilo u realnom vremenu?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Da. Sva vozila iz naše flote opremljena su GPS uređajima, što omogućava 24/7 nadzor i precizne informacije o statusu vaše pošiljke.</p></div>
+            </details>
+            <details class="faq-item" name="faq">
+                <summary><span>Koliko brzo možete organizovati utovar nakon poziva?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Zahvaljujući floti od 18 vozila, u mogućnosti smo da odgovorimo na hitne zahteve (ekspresne ture) i organizujemo utovar u najkraćem mogućem roku, često i istog dana.</p></div>
+            </details>
+            <details class="faq-item" name="faq">
+                <summary><span>Šta je sve potrebno od dokumentacije za međunarodni prevoz?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Za standardni prevoz potrebno je obezbediti tovarni list (CMR) i fakturu ili otpremnicu za robu. Naš tim pruža podršku oko prateće dokumentacije i carinskog posredovanja.</p></div>
+            </details>
+            <details class="faq-item" name="faq">
+                <summary><span>Kako mogu da dobijem tačnu ponudu za prevoz?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Cenu možete okvirno izračunati pomoću Kalkulatora na sajtu, ili nas pozvati ili kontaktirati putem Vibera i WhatsApp-a, pa ćemo vam dati preciznu ponudu na osnovu relacije.</p></div>
+            </details>
+            <details class="faq-item" name="faq">
+                <summary><span>Gde se nalazite i gde vam je sedište?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Naše zvanično sedište je u Vranju (Ratka Sofijanića 1), a kancelarija se nalazi u ul. Kosovskoj br. 43 u Vranju. Možete nas posetiti radnim danima i subotom od 08:00 do 18:00h.</p></div>
+            </details>
+            <details class="faq-item" name="faq">
+                <summary><span>Na koje sve načine vas mogu kontaktirati?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-a"><p>Možete nas kontaktirati telefonom na brojeve 069 / 650-040 i 062 / 813-1803, preko Vibera i WhatsApp-a na broj 069 / 650-040, porukom preko kontakt forme na sajtu ili na email danijelnedeljkovic.dn@gmail.com.</p></div>
+            </details>
+        </div>
+
+        <div class="faq-box">
+            <h3>Niste pronašli odgovor?</h3>
+            <p>Pozovite nas ili pošaljite upit. Odgovaramo brzo.</p>
+            <div class="row">
+                <a class="a1" href="index.html#kontakt">Zatražite Ponudu</a>
+                <a class="a2" href="tel:069650040">069 / 650-040</a>
+            </div>
+        </div>
+
+        <div class="faq-links">
+            <a href="index.html" class="dn-home-btn"><i class="fa-solid fa-house"></i> <span>Vrati na početnu</span></a>
+            <a href="Onama.html" class="dn-home-btn dn-faq-btn"><i class="fa-solid fa-chart-line"></i> <span>Finansijski podaci</span></a>
+        </div>
+    </main>
+
+    <a class="dn-cta" href="tel:069650040">
+        <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
+        <span>Imate hitnu turu u poslednjem trenutku?</span>
+        <span>Pozovite odmah: <b>069/650-040</b></span>
+    </a>
+
+    <footer class="pg-footer">
+        &copy; 2026 DN Cargo Vranje &bull; Designed by <b>Sasa</b>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script>
+    (function () {
+        var all = document.querySelectorAll('.faq-item');
+        all.forEach(function (d) {
+            d.addEventListener('toggle', function () {
+                if (d.open) all.forEach(function (o) { if (o !== d) o.open = false; });
+            });
+        });
+    })();
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+    }
+    </script>
+</body>
+</html>

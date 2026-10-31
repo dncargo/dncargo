@@ -506,6 +506,18 @@
         #topbar .mx-flash { animation: mx-flash .45s ease-out; }
         @keyframes mx-flash { 0% { color:#fff; text-shadow: 0 0 10px #00ff41, 0 0 2px #fff; } 100% { text-shadow: 0 0 0 transparent; } }
         @media (prefers-reduced-motion: reduce) { #topbar .mx-flash { animation: none; } }
+
+        .dn-cta { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 14px; padding:10px 16px; text-align:center; text-decoration:none; color:#0B132B; font-weight:700; font-size:14px; line-height:1.3; border-top:3px solid #0B132B; background:linear-gradient(90deg,#F59E0B,#F97316,#F59E0B); background-size:200% 100%; animation:dn-cta-bg 7s linear infinite; }
+        .dn-cta:hover { filter:brightness(1.08); }
+        .dn-cta i { font-size:18px; transform-origin:50% 60%; animation:dn-cta-ring 2s ease-in-out infinite; }
+        .dn-cta b { background:#0B132B; color:#F59E0B; padding:4px 12px; border-radius:9999px; margin-left:4px; white-space:nowrap; letter-spacing:.02em; }
+        @keyframes dn-cta-bg { to { background-position:200% 0; } }
+        @keyframes dn-cta-ring { 0%,55%,100% { transform:rotate(0); } 10%,30% { transform:rotate(-18deg); } 20%,40% { transform:rotate(18deg); } }
+        @media (prefers-reduced-motion: reduce) { .dn-cta, .dn-cta i { animation:none; } }
+
+        /* Bedževi na slikama voznog parka */
+        .dn-badges { position:absolute; top:12px; left:12px; z-index:3; display:flex; flex-wrap:wrap; gap:6px; max-width:calc(100% - 24px); pointer-events:none; }
+        .dn-badges span { background:rgba(11,19,43,.82); color:#F59E0B; border:1px solid rgba(245,158,11,.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); font-weight:800; font-size:10px; line-height:1; letter-spacing:.06em; text-transform:uppercase; padding:6px 9px; border-radius:9999px; box-shadow:0 4px 12px -4px rgba(0,0,0,.5); }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-amber-500 selection:text-white">
@@ -618,6 +630,13 @@
     <!-- BANER SA LOGOOM (vrh.jpg) -->
     <div id="vrh-banner" role="img" aria-label="DN Cargo logo"></div>
 
+    <!-- HITNE TURE - poziv -->
+    <a class="dn-cta" href="tel:069650040">
+        <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
+        <span>Imate hitnu turu u poslednjem trenutku?</span>
+        <span>Pozovite odmah: <b>069/650-040</b></span>
+    </a>
+
     <!-- MOBILE DRAWER NAVIGATION -->
     <div id="mobile-drawer" class="fixed inset-0 bg-navy-950/80 z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex justify-end">
         <div id="drawer-panel" class="w-4/5 max-w-xs bg-white h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
@@ -658,6 +677,14 @@
                     <a href="Onama.html" class="flex items-center gap-3 bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-400 rounded-xl px-4 py-3 transition">
                         <i class="fa-solid fa-chart-line text-2xl text-amber-500"></i>
                         <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Finansijski podaci</span><span class="block text-[11px] text-slate-500">Registracija i bonitet firme</span></span>
+                        <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                    </a>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-slate-100">
+                    <a href="FAQ.html" class="flex items-center gap-3 bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-400 rounded-xl px-4 py-3 transition">
+                        <i class="fa-solid fa-circle-question text-2xl text-amber-500"></i>
+                        <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Česta pitanja (FAQ)</span><span class="block text-[11px] text-slate-500">Odgovori na najčešća pitanja</span></span>
                         <i class="fa-solid fa-chevron-right text-slate-400"></i>
                     </a>
                 </div>
@@ -1038,30 +1065,35 @@
                     <div class="dn-viewport" id="dn-viewport">
                         <div class="dn-track" id="dn-track">
                         <div class="dn-slide" role="group" aria-roledescription="slide" aria-label="1 / 5">
+                            <div class="dn-badges" aria-hidden="true"><span>EURO 6</span><span>GPS 24/7</span><span>CMR osiguranje</span></div>
                             <img src="Vozila1.jpg" alt="" aria-hidden="true" class="dn-slide-bg" loading="lazy">
                             <button type="button" class="flota-foto dn-slide-btn" data-src="Vozila1.jpg" data-alt="DN Cargo kombi - kabina" aria-label="Uvećaj sliku: DN Cargo kombi - kabina">
                                 <img src="Vozila1.jpg" alt="DN Cargo kombi - kabina" loading="eager" style="">
                             </button>
                         </div>
                         <div class="dn-slide" role="group" aria-roledescription="slide" aria-label="2 / 5">
+                            <div class="dn-badges" aria-hidden="true"><span>EURO 6</span><span>GPS 24/7</span><span>CMR osiguranje</span></div>
                             <img src="Vozila2.jpg" alt="" aria-hidden="true" class="dn-slide-bg" loading="lazy">
                             <button type="button" class="flota-foto dn-slide-btn" data-src="Vozila2.jpg" data-alt="DN Cargo kombiji i avion iznad" aria-label="Uvećaj sliku: DN Cargo kombiji i avion iznad">
                                 <img src="Vozila2.jpg" alt="DN Cargo kombiji i avion iznad" loading="lazy" style="">
                             </button>
                         </div>
                         <div class="dn-slide" role="group" aria-roledescription="slide" aria-label="3 / 5">
+                            <div class="dn-badges" aria-hidden="true"><span>EURO 6</span><span>GPS 24/7</span><span>CMR osiguranje</span></div>
                             <img src="Vozila3.jpg" alt="" aria-hidden="true" class="dn-slide-bg" loading="lazy">
                             <button type="button" class="flota-foto dn-slide-btn" data-src="Vozila3.jpg" data-alt="DN Cargo flota kombija u nizu" aria-label="Uvećaj sliku: DN Cargo flota kombija u nizu">
                                 <img src="Vozila3.jpg" alt="DN Cargo flota kombija u nizu" loading="lazy" style="">
                             </button>
                         </div>
                         <div class="dn-slide" role="group" aria-roledescription="slide" aria-label="4 / 5">
+                            <div class="dn-badges" aria-hidden="true"><span>EURO 6</span><span>GPS 24/7</span><span>CMR osiguranje</span></div>
                             <img src="Vozila4.jpg" alt="" aria-hidden="true" class="dn-slide-bg" loading="lazy">
                             <button type="button" class="flota-foto dn-slide-btn" data-src="Vozila4.jpg" data-alt="DN Cargo kombi u zalasku sunca" aria-label="Uvećaj sliku: DN Cargo kombi u zalasku sunca">
                                 <img src="Vozila4.jpg" alt="DN Cargo kombi u zalasku sunca" loading="lazy" style="max-height:min(100%,360px);">
                             </button>
                         </div>
                         <div class="dn-slide" role="group" aria-roledescription="slide" aria-label="5 / 5">
+                            <div class="dn-badges" aria-hidden="true"><span>EURO 6</span><span>GPS 24/7</span><span>CMR osiguranje</span></div>
                             <img src="Vozila5.jpg" alt="" aria-hidden="true" class="dn-slide-bg" loading="lazy">
                             <button type="button" class="flota-foto dn-slide-btn" data-src="Vozila5.jpg" data-alt="Dva DN Cargo kombija" aria-label="Uvećaj sliku: Dva DN Cargo kombija">
                                 <img src="Vozila5.jpg" alt="Dva DN Cargo kombija" loading="lazy" style="">
@@ -1576,6 +1608,7 @@
                         <li><a href="#flota" class="hover:text-amber-500 transition">Vozni Park (18 Kombija)</a></li>
                         <li><a href="#karijera" class="hover:text-amber-500 transition text-orange-400 font-bold">Posao Za Vozače B Kat.</a></li>
                         <li><a href="#lokacija" class="hover:text-amber-500 transition">Lokacija na Mapi</a></li>
+                        <li><a href="FAQ.html" class="hover:text-amber-500 transition">Česta pitanja (FAQ)</a></li>
                     </ul>
                 </div>
 
