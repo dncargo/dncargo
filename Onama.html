@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finansijski podaci | DN Cargo Vranje</title>
+    <meta name="description" content="DN Cargo Vranje - finansijski i registracioni podaci firme.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="canonical" href="https://www.dncargo.sajt.net/Onama.html">
+    <link rel="icon" href="3120.jpg">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background: #0B132B; font-family: 'Poppins', sans-serif; color: #fff; }
+        .pg-header { position: sticky; top: 0; z-index: 40; background: rgba(11,19,43,.96); backdrop-filter: blur(10px); border-bottom: 2px solid rgba(245,158,11,.55); }
+        .pg-header-in { max-width: 1200px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+        .pg-back { color: #fff; text-decoration: none; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid rgba(255,255,255,.25); border-radius: 9999px; transition: background .2s; }
+        .pg-back:hover { background: rgba(245,158,11,.2); border-color: #F59E0B; }
+        .pg-logo { height: 48px; width: auto; display: block; }
+        .dn-lang { display: inline-flex; border: 1px solid rgba(255,255,255,.35); border-radius: 9999px; overflow: hidden; }
+        .dn-lang button { padding: 6px 12px; font: 700 12px 'Poppins', sans-serif; letter-spacing: .04em; color: #fff; background: transparent; border: 0; cursor: pointer; }
+        .dn-lang button:hover { background: rgba(255,255,255,.12); }
+        .dn-lang button.active { background: #F59E0B; color: #0B132B; }
+        .dn-btn { display: inline-flex; align-items: center; gap: 8px; font: 700 12px 'Poppins', sans-serif; padding: 9px 16px; border-radius: 10px; text-decoration: none; cursor: pointer; transition: transform .2s, background .2s; border: 1px solid transparent; }
+        .dn-btn:hover { transform: translateY(-2px); }
+        .dn-btn-violet { background: rgba(139,92,246,.2); color: #c4b5fd; border-color: rgba(139,92,246,.55); }
+        .dn-btn-violet:hover { background: rgba(139,92,246,.35); }
+        .dn-btn-cyan { background: rgba(6,182,212,.18); color: #67e8f9; border-color: rgba(6,182,212,.55); }
+        .dn-btn-cyan:hover { background: rgba(6,182,212,.32); }
+        .dn-home-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #F59E0B; color: #0F172A; font: 800 14px 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; padding: 15px 20px; border-radius: 14px; box-shadow: 0 12px 24px -10px rgba(245,158,11,.55); transition: transform .2s, background .2s; }
+        .dn-home-btn:hover { background: #fbbf24; transform: translateY(-2px); }
+        .pg-footer { text-align: center; padding: 26px 20px 34px; font-size: 12px; color: #94a3b8; border-top: 1px solid rgba(255,255,255,.08); }
+        .pg-footer b { color: #F59E0B; }
+        /* Pregled dokumenta */
+        #doc-viewer { position: fixed; inset: 0; z-index: 100; display: none; flex-direction: column; background: rgba(2,6,23,.94); }
+        #doc-viewer.open { display: flex; }
+        .dv-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; background: #0B132B; border-bottom: 2px solid rgba(245,158,11,.55); }
+        .dv-bar h3 { margin: 0; font: 800 15px 'Montserrat', sans-serif; }
+        .dv-bar small { display: block; font-size: 11px; color: #94a3b8; font-weight: 500; font-family: 'Poppins', sans-serif; }
+        .dv-close { width: 42px; height: 42px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.3); background: transparent; color: #fff; font-size: 26px; line-height: 1; cursor: pointer; }
+        .dv-close:hover { background: #F59E0B; color: #0B132B; border-color: #F59E0B; }
+        .dv-body { flex: 1; overflow: auto; padding: 18px 12px 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; -webkit-overflow-scrolling: touch; }
+        .dv-body figure { margin: 0; width: min(900px, 100%); }
+        .dv-body img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.5); -webkit-user-drag: none; user-select: none; }
+        .dv-body figcaption { text-align: center; font-size: 11px; color: #94a3b8; margin-top: 6px; }
+    </style>
+</head>
+<body>
+    <header class="pg-header">
+        <div class="pg-header-in">
+            <a href="index.html" class="pg-back"><i class="fa-solid fa-arrow-left"></i> <span>Nazad na početnu</span></a>
+            <video class="pg-logo" src="intro.mp4" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
+            <div class="dn-lang" role="group" aria-label="Language" data-no-i18n>
+                <button type="button" data-setlang="sr">SR</button>
+                <button type="button" data-setlang="en">EN</button>
+                <button type="button" data-setlang="de">DE</button>
+            </div>
+        </div>
+    </header>
+
+<section id="o-nama" style="position: relative; padding: 80px 20px; background-image: url('https://images.unsplash.com/photo-1586191147571-026f849c714c?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; color: #ffffff; font-family: 'Poppins', sans-serif;">
+    
+    <!-- Tamni prozirni preliv preko slike radi savršene čitljivosti teksta -->
+    <div style="position: absolute; inset: 0; background-color: rgba(15, 23, 42, 0.92); backdrop-filter: blur(4px);"></div>
+
+    <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 10;">
+        
+        <!-- Zaglavlje sekcije -->
+        <div style="text-align: center; margin-bottom: 50px;">
+            <span style="background-color: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); color: #F59E0B; padding: 6px 16px; border-radius: 50px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                Zvanični podaci i reputacija
+            </span>
+            <h2 style="font-size: 32px; font-weight: 900; margin-top: 15px; font-family: 'Montserrat', sans-serif; line-height: 1.2;">
+                Logistika izgrađena na <span style="color: #F59E0B;">činjenicama</span> i stabilnosti
+            </h2>
+            <div style="width: 80px; height: 4px; background: linear-gradient(to right, #F59E0B, #EA580C); margin: 20px auto 0; border-radius: 2px;"></div>
+        </div>
+
+        <!-- Glavni Grid: Leva i Desna Kolona -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: stretch;">
+            
+            <!-- LEVA KOLONA: Vizuelni prikaz, slika sa A+ bedžem i Timeline -->
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                
+                <!-- Slika sa A+ Bonitetnim bedžom -->
+                <div style="position: relative; border-radius: 24px; overflow: hidden; border: 2px solid rgba(245, 158, 11, 0.3); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);">
+                    <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80" alt="DN Cargo Vranje Kamioni" style="width: 100%; height: 280px; object-fit: cover; display: block; opacity: 0.9;">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);"></div>
+                    
+                    <!-- Tekst na slici -->
+                    <div style="position: absolute; bottom: 20px; left: 20px; right: 20px;">
+                        <span style="font-size: 11px; font-weight: bold; color: #F59E0B; text-transform: uppercase; letter-spacing: 1px;">Međunarodni Standardi</span>
+                        <h3 style="font-size: 18px; font-weight: 700; color: #ffffff; margin: 4px 0 0; font-family: 'Montserrat', sans-serif;">Siguran prevoz sa A+ garancijom kvaliteta</h3>
+                    </div>
+
+                    <!-- Plutajući A+ bedž -->
+                    <div style="position: absolute; top: 15px; right: 15px; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(245, 158, 11, 0.5); padding: 10px 14px; border-radius: 14px; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 15px rgba(0,0,0,0.3);">
+                        <div style="background: linear-gradient(135deg, #F59E0B, #D97706); color: #0F172A; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px;">A+</div>
+                        <div>
+                            <div style="font-size: 9px; color: #F59E0B; font-weight: 800; text-transform: uppercase;">Sertifikat</div>
+                            <div style="font-size: 11px; font-weight: bold; color: #ffffff;">Visok Bonitet</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline / Razvojni put -->
+                <div style="background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); padding: 30px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
+                    <h4 style="font-size: 16px; font-weight: 800; color: #ffffff; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+                        📈 Razvoj i Pozicioniranje na Tržištu
+                    </h4>
+
+                    <div style="display: flex; flex-direction: column; gap: 20px; position: relative;">
+                        <!-- Korak 1 -->
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #F59E0B; color: #0F172A; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-top: 2px;">1</div>
+                            <div>
+                                <span style="font-size: 11px; color: #F59E0B; font-weight: bold;">06. Jul 2023.</span>
+                                <h5 style="font-size: 13px; font-weight: bold; color: #ffffff; margin: 2px 0;">Osnivanje Preduzeća</h5>
+                                <p style="font-size: 12px; color: #94a3b8; margin: 0; line-height: 1.5;">Danijel Nedeljković osniva DN Cargo u Vranju sa vizijom vrhunske logistike.</p>
+                            </div>
+                        </div>
+
+                        <!-- Korak 2 -->
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #3b82f6; color: #ffffff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-top: 2px;">2</div>
+                            <div>
+                                <span style="font-size: 11px; color: #60a5fa; font-weight: bold;">Ekspanzija Flote</span>
+                                <h5 style="font-size: 13px; font-weight: bold; color: #ffffff; margin: 2px 0;">14+ Modernih Vozila</h5>
+                                <p style="font-size: 12px; color: #94a3b8; margin: 0; line-height: 1.5;">EURO 6 kamioni, cerade i frigo sistemi za domaći i EU prevoz.</p>
+                            </div>
+                        </div>
+
+                        <!-- Korak 3 -->
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #10b981; color: #ffffff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-top: 2px;">3</div>
+                            <div>
+                                <span style="font-size: 11px; color: #34d399; font-weight: bold;">Finansijski Uspeh</span>
+                                <h5 style="font-size: 13px; font-weight: bold; color: #ffffff; margin: 2px 0;">Preko 66 Miliona RSD Prometa</h5>
+                                <p style="font-size: 12px; color: #94a3b8; margin: 0; line-height: 1.5;">Vrhunska likvidnost i pouzdanost u svakoj poslovnoj transakciji.</p>
+                            </div>
+                        </div>
+
+                        <!-- Korak 4: Rešenje o registraciji (samo pregled) -->
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #8b5cf6; color: #ffffff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-top: 2px;">4</div>
+                            <div>
+                                <span style="font-size: 11px; color: #a78bfa; font-weight: bold;">Zvanični dokument</span>
+                                <h5 style="font-size: 13px; font-weight: bold; color: #ffffff; margin: 2px 0;">Rešenje o registraciji (APR)</h5>
+                                <p style="font-size: 12px; color: #94a3b8; margin: 0 0 10px; line-height: 1.5;">Zvanično rešenje Agencije za privredne registre o upisu preduzeća. Dostupno samo za pregled.</p>
+                                <button type="button" id="open-resenje" class="dn-btn dn-btn-violet"><i class="fa-solid fa-eye"></i> Pregledaj dokument</button>
+                            </div>
+                        </div>
+
+                        <!-- Korak 5: Podaci o bonitetu (CompanyWall) -->
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #06b6d4; color: #0F172A; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-top: 2px;">5</div>
+                            <div>
+                                <span style="font-size: 11px; color: #22d3ee; font-weight: bold;">Bonitet</span>
+                                <h5 style="font-size: 13px; font-weight: bold; color: #ffffff; margin: 2px 0;">Podaci o bonitetu</h5>
+                                <p style="font-size: 12px; color: #94a3b8; margin: 0 0 10px; line-height: 1.5;">Pogledajte bonitetni izveštaj i finansijske podatke firme na portalu CompanyWall.</p>
+                                <a href="https://www.companywall.rs/firma/dn-cargo/MMx9H21RD" target="_blank" rel="noopener noreferrer" class="dn-btn dn-btn-cyan"><i class="fa-solid fa-arrow-up-right-from-square"></i> Otvori CompanyWall</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- DESNA KOLONA: Pouzdan partner i APR Podaci -->
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                
+                <!-- Kartica: Pouzdan partner -->
+                <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9)); border: 1px solid rgba(245, 158, 11, 0.3); padding: 30px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
+                    <h3 style="font-size: 20px; font-weight: 800; color: #ffffff; margin-bottom: 15px; font-family: 'Montserrat', sans-serif;">
+                        Pouzdan Partner u Svakom Kilometru
+                    </h3>
+                    <p style="font-size: 13px; color: #cbd5e1; line-height: 1.6; margin-bottom: 20px;">
+                        Bez skrivenih klauzula i lažnih obećanja. DN Cargo Vranje donosi maksimalnu transparentnost u poslovanju, tačnost u sekund i potpunu bezbednost roba u tranzitu.
+                    </p>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #e2e8f0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <li style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 10px;"><span style="color: #F59E0B;">✓</span> 100% CMR Osiguranje</li>
+                        <li style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 10px;"><span style="color: #F59E0B;">✓</span> 24/7 GPS Nadzor</li>
+                        <li style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 10px;"><span style="color: #F59E0B;">✓</span> Kapacitet do 24t</li>
+                        <li style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 10px;"><span style="color: #F59E0B;">✓</span> Sertifikovani Vozači</li>
+                    </ul>
+                </div>
+
+                <!-- Kartica: APR Registracioni podaci -->
+                <div style="background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); padding: 30px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 15px;">
+                        <h4 style="font-size: 16px; font-weight: 700; color: #ffffff; margin: 0; font-family: 'Montserrat', sans-serif;">
+                            Registracioni Podaci Preduzeća
+                        </h4>
+                        <span style="background-color: rgba(16, 185, 129, 0.2); color: #34d399; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; border: 1px solid rgba(16, 185, 129, 0.3);">
+                            APR Provereno
+                        </span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 12px; font-size: 13px;">
+                        <div style="background: rgba(15, 23, 42, 0.6); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <span style="display: block; font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: bold; margin-bottom: 3px;">Puno Poslovno Ime</span>
+                            <strong style="color: #ffffff;">Danijel Nedeljković PR DN Cargo Vranje</strong>
+                        </div>
+
+                        <div style="background: rgba(15, 23, 42, 0.6); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <span style="display: block; font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: bold; margin-bottom: 3px;">Pretežna Delatnost</span>
+                            <strong style="color: #ffffff;">4941 - Drumski prevoz tereta</strong>
+                        </div>
+
+                        <div style="background: rgba(15, 23, 42, 0.6); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <span style="display: block; font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: bold; margin-bottom: 3px;">PIB / Matični Broj</span>
+                            <strong style="color: #F59E0B; font-family: monospace;">PIB: 113807226 | MB: 67098803</strong>
+                        </div>
+
+                        <div style="background: rgba(15, 23, 42, 0.6); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <span style="display: block; font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: bold; margin-bottom: 3px;">Adresa Sedišta</span>
+                            <strong style="color: #ffffff;">Ratka Sofijanića 1, 17501 Vranje</strong>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px; display: flex; gap: 10px;">
+                        <a href="index.html#kontakt" style="flex: 1; background-color: #F59E0B; color: #0F172A; text-align: center; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 12px; text-decoration: none; text-transform: uppercase;">
+                            Zatražite Ponudu
+                        </a>
+                        <a href="tel:069650040" style="flex: 1; background-color: rgba(255, 255, 255, 0.1); color: #ffffff; text-align: center; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 12px; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.2);">
+                            069 / 650-040
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Povratak na početnu -->
+                <a href="index.html" class="dn-home-btn"><i class="fa-solid fa-house"></i> <span>Vrati na početnu</span></a>
+
+                <!-- Video intro (popunjava prazan prostor) -->
+                <div style="flex: 1; min-height: 220px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(245, 158, 11, 0.3); background: #0B132B; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); display: flex; align-items: center; justify-content: center;">
+                    <video src="intro.mp4" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo" style="width: 100%; height: 100%; max-height: 420px; object-fit: contain; display: block;"></video>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    <footer class="pg-footer">
+        &copy; 2026 DN Cargo Vranje &bull; Designed by <b>Sasa</b>
+    </footer>
+
+    <!-- Pregled rešenja (bez preuzimanja) -->
+    <div id="doc-viewer" role="dialog" aria-modal="true" aria-label="Rešenje o registraciji">
+        <div class="dv-bar">
+            <div><h3>Rešenje o registraciji</h3><small>Dokument je prikazan samo radi pregleda.</small></div>
+            <button type="button" class="dv-close" id="dv-close" aria-label="Zatvori">&times;</button>
+        </div>
+        <div class="dv-body" id="dv-body">
+            <figure><img src="resenje-1.jpg" alt="Rešenje o registraciji - strana 1" draggable="false" loading="lazy"><figcaption>Strana 1</figcaption></figure>
+            <figure><img src="resenje-2.jpg" alt="Rešenje o registraciji - strana 2" draggable="false" loading="lazy"><figcaption>Strana 2</figcaption></figure>
+        </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script>
+    (function () {
+        var v = document.getElementById('doc-viewer'), body = document.getElementById('dv-body');
+        function open() { v.classList.add('open'); document.body.style.overflow = 'hidden'; body.scrollTop = 0; }
+        function close() {
+            v.classList.remove('open'); document.body.style.overflow = '';
+            if (location.hash === '#resenje' && history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+        }
+        document.getElementById('open-resenje').addEventListener('click', open);
+        document.getElementById('dv-close').addEventListener('click', close);
+        v.addEventListener('click', function (e) { if (e.target === v || e.target === body) close(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+        if (location.hash === '#resenje') open();
+        window.addEventListener('hashchange', function () { if (location.hash === '#resenje') open(); });
+    })();
+    </script>
+    <script>
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+    }
+    </script>
+</body>
+</html>

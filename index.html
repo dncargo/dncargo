@@ -398,6 +398,27 @@
             footer { padding-bottom: 16px; }
         }
 
+
+        /* Izbor jezika SR / EN / DE */
+        .dn-lang { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 9999px; overflow: hidden; background: #fff; }
+        .dn-lang button { padding: 6px 14px; font: 700 12px 'Poppins', sans-serif; letter-spacing: .04em; color: #0B132B; background: transparent; border: 0; cursor: pointer; transition: background .2s, color .2s; }
+        .dn-lang button:hover { background: #FEF3C7; }
+        .dn-lang button.active { background: #F59E0B; color: #0B132B; }
+        .dn-lang.on-dark { background: transparent; border-color: rgba(255,255,255,.35); }
+        .dn-lang.on-dark button { color: #fff; padding: 5px 11px; text-shadow: none; }
+        .dn-lang.on-dark button:hover { background: rgba(255,255,255,.12); }
+        .dn-lang.on-dark button.active { background: #F59E0B; color: #0B132B; }
+
+        /* Otvoreno / Zatvoreno */
+        .dn-hours:empty { display: none; }
+        .dn-h { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; font: 700 12px/1.3 'Poppins', sans-serif; padding: 5px 12px; border-radius: 9999px; }
+        .dn-h i { width: 8px; height: 8px; border-radius: 9999px; display: inline-block; }
+        .dn-h-open { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+        .dn-h-open i { background: #22c55e; box-shadow: 0 0 0 0 rgba(34,197,94,.6); animation: dn-live 1.8s ease-out infinite; }
+        .dn-h-closed { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .dn-h-closed i { background: #ef4444; }
+        @keyframes dn-live { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.6); } 100% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
+
         /* Pristupačnost */
         :focus-visible { outline: 3px solid #F59E0B; outline-offset: 3px; }
         @media (prefers-reduced-motion: reduce) {
@@ -576,6 +597,11 @@
                     <a href="#kontakt" class="hover:text-amber-500 transition">Kontakt</a>
                 </nav>
 
+                <div class="hidden lg:flex dn-lang on-dark" role="group" aria-label="Language" data-no-i18n>
+                    <button type="button" data-setlang="sr">SR</button>
+                    <button type="button" data-setlang="en">EN</button>
+                    <button type="button" data-setlang="de">DE</button>
+                </div>
                 <div class="hidden sm:flex items-center gap-3">
                     <button onclick="openModal('quote-modal')" class="bg-amber-500 hover:bg-amber-hover text-white px-6 py-3 rounded-xl font-bold text-sm transition shadow-lg shadow-amber-500/25 flex items-center gap-2">
                         <i class="fa-solid fa-paper-plane"></i>
@@ -597,8 +623,16 @@
         <div id="drawer-panel" class="w-4/5 max-w-xs bg-white h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
             <div>
                 <div class="flex items-center justify-between border-b pb-4 mb-6">
-                    <video src="intro.mp4" class="h-8 w-auto object-contain" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
+                    <video src="intro.mp4" class="h-12 w-auto object-contain" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
                     <button id="close-drawer" class="text-slate-400 hover:text-navy-900 text-2xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="flex items-center gap-3 mb-5" data-no-i18n>
+                    <i class="fa-solid fa-globe text-amber-500 text-lg" aria-hidden="true"></i>
+                    <div class="dn-lang" role="group" aria-label="Language">
+                        <button type="button" data-setlang="sr">SR</button>
+                        <button type="button" data-setlang="en">EN</button>
+                        <button type="button" data-setlang="de">DE</button>
+                    </div>
                 </div>
                 <nav class="flex flex-col gap-4 text-slate-800 font-semibold text-sm">
                     <a href="#pocetna" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">Početna</a>
@@ -612,19 +646,20 @@
                 </nav>
 
                 <div class="mt-6 pt-5 border-t border-slate-100">
-                    <h4 class="text-[11px] font-extrabold uppercase tracking-widest text-slate-400 mb-3">Naše aplikacije</h4>
-                    <div class="flex flex-col gap-2.5">
-                        <a href="DN_Cargo.apk" download="DN_Cargo.apk" class="flex items-center gap-3 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-400 rounded-xl px-4 py-3 transition">
-                            <i class="fa-brands fa-android text-2xl text-emerald-600"></i>
-                            <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Android</span><span class="block text-[11px] text-slate-500">Preuzmi aplikaciju (.apk)</span></span>
-                            <i class="fa-solid fa-download text-slate-400"></i>
-                        </a>
-                        <a href="DN_Cargo.zip" download="DN_Cargo.zip" class="flex items-center gap-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-400 rounded-xl px-4 py-3 transition">
-                            <i class="fa-brands fa-windows text-2xl text-sky-600"></i>
-                            <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Windows</span><span class="block text-[11px] text-slate-500">Preuzmi aplikaciju (.zip)</span></span>
-                            <i class="fa-solid fa-download text-slate-400"></i>
-                        </a>
-                    </div>
+                    <h4 class="text-[11px] font-extrabold uppercase tracking-widest text-slate-400 mb-3">Dokumenta</h4>
+                    <a href="Onama.html#resenje" class="flex items-center gap-3 bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-400 rounded-xl px-4 py-3 transition">
+                        <i class="fa-solid fa-file-lines text-2xl text-amber-500"></i>
+                        <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Rešenje o registraciji</span><span class="block text-[11px] text-slate-500">Otvori dokument (APR)</span></span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-slate-400"></i>
+                    </a>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-slate-100">
+                    <a href="Onama.html" class="flex items-center gap-3 bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-400 rounded-xl px-4 py-3 transition">
+                        <i class="fa-solid fa-chart-line text-2xl text-amber-500"></i>
+                        <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Finansijski podaci</span><span class="block text-[11px] text-slate-500">Registracija i bonitet firme</span></span>
+                        <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                    </a>
                 </div>
             </div>
 
@@ -635,6 +670,7 @@
                 <div class="text-xs text-slate-500 text-center space-y-1">
                     <p><i class="fa-solid fa-phone text-amber-500 mr-1"></i> <a href="tel:069650040">069 / 650-040</a></p>
                     <p><i class="fa-solid fa-phone text-amber-500 mr-1"></i> <a href="tel:0628131803">062 / 813-1803</a></p>
+                    <p><i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i> <a href="https://wa.me/38169650040" target="_blank" rel="noopener">WhatsApp Chat</a></p>
                     <p><i class="fa-brands fa-viber text-emerald-600 mr-1"></i> <a href="viber://chat?number=%2B38169650040">Viber Chat</a></p>
                 </div>
             </div>
@@ -1342,6 +1378,7 @@
                             <div>
                                 <h4 class="font-bold text-navy-900 text-sm font-heading">Radno vreme</h4>
                                 <p class="text-sm text-slate-600">Pon - Sub: 08:00 - 18:00h</p>
+                                <p class="mt-2"><span class="dn-hours" data-no-i18n></span></p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
@@ -1521,7 +1558,7 @@
                 
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <video src="intro.mp4" class="h-8 w-auto object-contain rounded" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
+                        <video src="intro.mp4" class="h-12 w-auto object-contain rounded" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
                         <span class="text-xl font-black text-white font-heading">DN <span class="text-amber-500">CARGO</span></span>
                     </div>
                     <p class="text-xs leading-relaxed mb-4">
@@ -1562,6 +1599,7 @@
                         <li><i class="fa-brands fa-viber text-emerald-500 mr-2"></i> <a href="viber://chat?number=%2B38169650040">Viber Chat</a></li>
                         <li><i class="fa-solid fa-envelope text-amber-500 mr-2"></i> <a href="mailto:danijelnedeljkovic.dn@gmail.com">danijelnedeljkovic.dn@gmail.com</a></li>
                         <li><i class="fa-solid fa-clock text-amber-500 mr-2"></i> Pon - Sub: 08:00 - 18:00h</li>
+                        <li class="pl-6"><span class="dn-hours" data-no-i18n></span></li>
                     </ul>
                 </div>
 
@@ -1569,7 +1607,7 @@
 
             <div class="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs gap-4">
                 <div class="flex items-center gap-3">
-                    <video src="intro.mp4" class="h-8 w-auto object-contain rounded" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
+                    <video src="intro.mp4" class="h-12 w-auto object-contain rounded" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
                     <p>&copy; 2026 DN Cargo Vranje. Sva prava zadržana.</p>
                 </div>
                 <p class="text-slate-500">Profesionalni kombi prevoz tereta.</p>
@@ -1651,6 +1689,9 @@
         </form>
     </div>
 
+    <!-- Višejezičnost (mora pre ostalih skripti) -->
+    <script src="i18n.js"></script>
+
     <!-- ==================== JAVASCRIPT ==================== -->
     <script>
         const mobileToggle = document.getElementById('mobile-toggle');
@@ -1701,12 +1742,12 @@
             output.innerHTML = `
                 <div class="flex items-center gap-2 font-bold text-navy-900 text-sm mb-1">
                     <i class="fa-solid fa-van-shuttle text-amber-500"></i>
-                    <span>Status Kombija: ${inputVal}</span>
+                    <span>${dnT('Status Kombija:')} ${inputVal}</span>
                 </div>
                 <div class="space-y-1">
-                    <p><strong>Lokacija Vozila:</strong> U tranzitu (Evropska ruta)</p>
-                    <p><strong>Predviđena Isporuka:</strong> U toku dana</p>
-                    <p><strong>Status Tereta:</strong> Redovan transport • Vozilo EURO 6</p>
+                    <p><strong>${dnT('Lokacija Vozila:')}</strong> ${dnT('U tranzitu (Evropska ruta)')}</p>
+                    <p><strong>${dnT('Predviđena Isporuka:')}</strong> ${dnT('U toku dana')}</p>
+                    <p><strong>${dnT('Status Tereta:')}</strong> ${dnT('Redovan transport • Vozilo EURO 6')}</p>
                 </div>
             `;
         }
@@ -1993,28 +2034,71 @@
         var toggle = document.getElementById('dn-chat-toggle'), box = document.getElementById('dn-chat'),
             body = document.getElementById('dn-chat-body'), quick = document.getElementById('dn-chat-quick'),
             form = document.getElementById('dn-chat-form'), input = document.getElementById('dn-chat-input');
-        var opened = false;
-        var PHONES = 'Pozovite nas: 069 / 650-040 ili 062 / 813-1803.\nViber: 069 / 650-040.';
+        var L = window.dnLang || 'sr', opened = false;
+        var PH = {
+            sr: 'Pozovite nas: 069 / 650-040 ili 062 / 813-1803.\nViber i WhatsApp: 069 / 650-040.',
+            en: 'Call us: 069 / 650-040 or 062 / 813-1803.\nViber and WhatsApp: 069 / 650-040.',
+            de: 'Rufen Sie uns an: 069 / 650-040 oder 062 / 813-1803.\nViber und WhatsApp: 069 / 650-040.'
+        };
+        var PHONES = PH[L];
+        function tx(sr, en, de) { return L === 'en' ? en : (L === 'de' ? de : sr); }
         var TOPICS = [
-            { label: 'Cene i ponuda', keys: ['cen', 'kosta', 'ponud', 'koliko', 'tarif', 'racun', 'obracun', 'kalkul'],
-              text: 'Cena zavisi od relacije, težine i vrste robe. Za tačnu ponudu koristite Kalkulator na sajtu ili nas pozovite, pa ćemo odgovoriti brzo.\n' + PHONES, link: ['#kalkulator', 'Idi na kalkulator'] },
-            { label: 'Vozni park', keys: ['vozil', 'kombi', 'flot', 'park', 'palet', 'nosivost', 'kapacitet', 'tona', 'cerad', 'euro'],
-              text: 'Imamo 18 kombi vozila sa ceradom do 3,5 tone (EURO 6, GPS praćenje).\n• Standard: do 1.500 kg, 8 Euro paleta\n• Produženi / Mega: do 1.400 kg, 10 Euro paleta', link: ['#flota', 'Pogledaj vozni park'] },
-            { label: 'Usluge', keys: ['usluga', 'usluge', 'prevoz', 'transport', 'dostav', 'ekspres', 'hitno', 'carin', 'zbirn', 'inostran', 'evrop', 'srbij', 'evropsk'],
-              text: 'Nudimo kombi prevoz robe po Srbiji i Evropskoj uniji, ekspres dostavu 24/7, zbirni paletni prevoz i carinsko posredovanje.', link: ['#usluge', 'Pogledaj usluge'] },
-            { label: 'Radno vreme', keys: ['radno', 'vreme', 'radite', 'otvoren', 'sati'],
-              text: 'Kancelarija radi Pon - Sub: 08:00 - 18:00h. Ekspres ture su dostupne 24/7 po dogovoru.\n' + PHONES },
-            { label: 'Adresa', keys: ['adres', 'lokacij', 'gde', 'vranj', 'kosovska', 'mapa', 'kancelarij'],
-              text: 'Naša kancelarija je u Vranju, ul. Kosovska br. 43.', link: ['#lokacija', 'Prikaži na mapi'] },
-            { label: 'Posao vozača', keys: ['posao', 'zaposl', 'vozac', 'vozač', 'oglas', 'karijer', 'radno mesto', 'b kategorij'],
-              text: 'Zapošljavamo iskusne i odgovorne vozače sa B kategorijom za domaći i međunarodni transport. Detalji su u oglasu.', link: ['#karijera', 'Pogledaj oglas'] },
-            { label: 'Kontakt', keys: ['kontakt', 'telefon', 'broj', 'pozov', 'viber', 'mejl', 'mail', 'poruk'],
-              text: PHONES, link: ['#kontakt', 'Kontakt forma'] }
+            { label: tx('Cene i ponuda', 'Prices and quote', 'Preise und Angebot'),
+              keys: ['cen', 'kosta', 'ponud', 'koliko', 'tarif', 'racun', 'obracun', 'kalkul', 'price', 'cost', 'quote', 'how much', 'preis', 'kosten', 'angebot', 'wieviel'],
+              text: tx('Cena zavisi od relacije, težine i vrste robe. Za tačnu ponudu koristite Kalkulator na sajtu ili nas pozovite, pa ćemo odgovoriti brzo.\n',
+                       'The price depends on the route, weight and type of goods. For an exact quote use the Calculator on the site or call us and we will reply quickly.\n',
+                       'Der Preis hängt von Strecke, Gewicht und Art der Ware ab. Für ein genaues Angebot nutzen Sie den Rechner auf der Website oder rufen Sie uns an, wir antworten schnell.\n') + PHONES,
+              link: ['#kalkulator', tx('Idi na kalkulator', 'Go to calculator', 'Zum Rechner')] },
+            { label: tx('Vozni park', 'Fleet', 'Fuhrpark'),
+              keys: ['vozil', 'kombi', 'flot', 'park', 'palet', 'nosivost', 'kapacitet', 'tona', 'cerad', 'euro', 'fleet', 'van', 'vehicle', 'pallet', 'capacity', 'fuhrpark', 'transporter', 'fahrzeug', 'palette', 'kapazit'],
+              text: tx('Imamo 18 kombi vozila sa ceradom do 3,5 tone (EURO 6, GPS praćenje).\n• Standard: do 1.500 kg, 8 Euro paleta\n• Produženi / Mega: do 1.400 kg, 10 Euro paleta',
+                       'We have 18 tarpaulin vans up to 3.5 tonnes (EURO 6, GPS tracking).\n• Standard: up to 1,500 kg, 8 euro pallets\n• Extended / Mega: up to 1,400 kg, 10 euro pallets',
+                       'Wir haben 18 Planen-Transporter bis 3,5 Tonnen (EURO 6, GPS-Verfolgung).\n• Standard: bis 1.500 kg, 8 Europaletten\n• Verlängert / Mega: bis 1.400 kg, 10 Europaletten'),
+              link: ['#flota', tx('Pogledaj vozni park', 'View the fleet', 'Fuhrpark ansehen')] },
+            { label: tx('Usluge', 'Services', 'Leistungen'),
+              keys: ['usluga', 'usluge', 'prevoz', 'transport', 'dostav', 'ekspres', 'hitno', 'carin', 'zbirn', 'inostran', 'evrop', 'srbij', 'evropsk', 'service', 'delivery', 'express', 'customs', 'europe', 'serbia', 'leistung', 'zustellung', 'zoll', 'europa', 'serbien'],
+              text: tx('Nudimo kombi prevoz robe po Srbiji i Evropskoj uniji, ekspres dostavu 24/7, zbirni paletni prevoz i carinsko posredovanje.',
+                       'We offer van freight transport across Serbia and the European Union, 24/7 express delivery, groupage pallet transport and customs brokerage.',
+                       'Wir bieten Transporter-Gütertransport in Serbien und der Europäischen Union, Expresszustellung 24/7, Sammel-Palettentransport und Zollabwicklung.'),
+              link: ['#usluge', tx('Pogledaj usluge', 'View services', 'Leistungen ansehen')] },
+            { label: tx('Radno vreme', 'Working hours', 'Öffnungszeiten'),
+              keys: ['radno', 'vreme', 'radite', 'otvoren', 'sati', 'hours', 'open', 'opening', 'when', 'zeit', 'offen', 'geoeffnet', 'geöffnet', 'wann'],
+              text: tx('Kancelarija radi Pon - Sub: 08:00 - 18:00h. Ekspres ture su dostupne 24/7 po dogovoru.\n',
+                       'The office is open Mon - Sat: 08:00 - 18:00. Express trips are available 24/7 by arrangement.\n',
+                       'Das Büro ist Mo - Sa von 08:00 bis 18:00 Uhr geöffnet. Express-Fahrten sind nach Absprache rund um die Uhr möglich.\n') + PHONES },
+            { label: tx('Adresa', 'Address', 'Adresse'),
+              keys: ['adres', 'lokacij', 'gde', 'vranj', 'kosovska', 'mapa', 'kancelarij', 'address', 'where', 'location', 'map', 'office', 'adresse', 'wo', 'standort', 'karte', 'büro', 'buro'],
+              text: tx('Naša kancelarija je u Vranju, ul. Kosovska br. 43.', 'Our office is in Vranje, Kosovska St. 43.', 'Unser Büro befindet sich in Vranje, ul. Kosovska 43.'),
+              link: ['#lokacija', tx('Prikaži na mapi', 'Show on map', 'Auf der Karte zeigen')] },
+            { label: tx('Posao vozača', 'Driver jobs', 'Fahrer-Jobs'),
+              keys: ['posao', 'zaposl', 'vozac', 'vozač', 'oglas', 'karijer', 'b kategorij', 'job', 'driver', 'career', 'hiring', 'work', 'stelle', 'fahrer', 'bewerb', 'arbeit'],
+              text: tx('Zapošljavamo iskusne i odgovorne vozače sa B kategorijom za domaći i međunarodni transport. Detalji su u oglasu.',
+                       'We are hiring experienced and responsible drivers with a category B licence for domestic and international transport. Details are in the job ad.',
+                       'Wir stellen erfahrene und verantwortungsbewusste Fahrer mit Führerschein Klasse B für den nationalen und internationalen Transport ein. Details finden Sie in der Anzeige.'),
+              link: ['#karijera', tx('Pogledaj oglas', 'View the ad', 'Anzeige ansehen')] },
+            { label: tx('Finansijski podaci', 'Financial info', 'Finanzdaten'),
+              keys: ['bonitet', 'finans', 'registrac', 'pib', 'apr', 'rating', 'credit', 'financial', 'registration', 'bonit', 'finanz', 'registrier'],
+              text: tx('Registracioni podaci firme (rešenje APR) i podaci o bonitetu su na stranici Finansijski podaci.',
+                       'The company registration data (APR decision) and credit rating data are on the Financial Information page.',
+                       'Die Registrierungsdaten des Unternehmens (APR-Bescheid) und die Bonitätsdaten finden Sie auf der Seite Finanzielle Informationen.'),
+              link: ['Onama.html', tx('Otvori stranicu', 'Open the page', 'Seite öffnen')] },
+            { label: tx('Kontakt', 'Contact', 'Kontakt'),
+              keys: ['kontakt', 'telefon', 'broj', 'pozov', 'viber', 'mejl', 'mail', 'poruk', 'whatsapp', 'contact', 'phone', 'call', 'message', 'anruf', 'nachricht'],
+              text: PHONES, link: ['#kontakt', tx('Kontakt forma', 'Contact form', 'Kontaktformular')] }
         ];
-        var GREET = ['zdravo', 'cao', 'ćao', 'pozdrav', 'dobar dan', 'dobro jutro', 'dobro vece', 'hej', 'alo'];
-        var FALLBACK = 'Nisam siguran da sam razumeo pitanje. Izaberite jednu od tema ispod ili nas direktno kontaktirajte.\n' + PHONES;
+        var GREET = ['zdravo', 'cao', 'ćao', 'pozdrav', 'dobar dan', 'dobro jutro', 'dobro vece', 'hej', 'alo', 'hello', 'hi', 'hey', 'good morning', 'hallo', 'guten tag', 'servus', 'moin'];
+        var GREET_TXT = tx('Zdravo! Kako mogu da pomognem? Izaberite temu ili napišite pitanje.', 'Hello! How can I help? Choose a topic or write a question.', 'Hallo! Wie kann ich helfen? Wählen Sie ein Thema oder schreiben Sie eine Frage.');
+        var FALLBACK = tx('Nisam siguran da sam razumeo pitanje. Izaberite jednu od tema ispod ili nas direktno kontaktirajte.\n',
+                          'I am not sure I understood the question. Choose one of the topics below or contact us directly.\n',
+                          'Ich bin nicht sicher, ob ich die Frage verstanden habe. Wählen Sie unten ein Thema oder kontaktieren Sie uns direkt.\n') + PHONES;
+        var WELCOME = tx('Zdravo! Ja sam DN Cargo asistent. Izaberite temu ili napišite pitanje.', 'Hello! I am the DN Cargo assistant. Choose a topic or write a question.', 'Hallo! Ich bin der DN Cargo Assistent. Wählen Sie ein Thema oder schreiben Sie eine Frage.');
 
-        function norm(t) { return t.toLowerCase().replace(/č|ć/g, 'c').replace(/š/g, 's').replace(/ž/g, 'z').replace(/đ/g, 'dj'); }
+        function norm(t) { return t.toLowerCase().replace(/č|ć/g, 'c').replace(/š/g, 's').replace(/ž/g, 'z').replace(/đ/g, 'dj').replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u'); }
+        function hasWord(n, k) {
+            k = norm(k);
+            if (k.length <= 3) return new RegExp('(^|[^a-z])' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).test(n);
+            return n.indexOf(k) !== -1;
+        }
         function add(text, who, link) {
             var d = document.createElement('div');
             d.className = 'dn-msg ' + who;
@@ -2033,24 +2117,18 @@
             var n = norm(q), best = null, bestScore = 0;
             TOPICS.forEach(function (t) {
                 var sc = 0;
-                t.keys.forEach(function (k) { if (n.indexOf(norm(k)) !== -1) sc++; });
+                t.keys.forEach(function (k) { if (hasWord(n, k)) sc++; });
                 if (sc > bestScore) { bestScore = sc; best = t; }
             });
             if (best) return add(best.text, 'bot', best.link);
-            if (GREET.some(function (g) { return n.indexOf(norm(g)) !== -1; })) return add('Zdravo! Kako mogu da pomognem? Izaberite temu ili napišite pitanje.', 'bot');
+            if (GREET.some(function (g) { return hasWord(n, g); })) return add(GREET_TXT, 'bot');
             add(FALLBACK, 'bot');
         }
-        function ask(q) {
-            add(q, 'user');
-            setTimeout(function () { answer(q); }, 350);
-        }
+        function ask(q) { add(q, 'user'); setTimeout(function () { answer(q); }, 350); }
         function setOpen(v) {
             box.classList.toggle('open', v);
             toggle.setAttribute('aria-expanded', v ? 'true' : 'false');
-            if (v && !opened) {
-                opened = true;
-                add('Zdravo! Ja sam DN Cargo asistent. Izaberite temu ili napišite pitanje.', 'bot');
-            }
+            if (v && !opened) { opened = true; add(WELCOME, 'bot'); }
             if (v) setTimeout(function () { input.focus(); }, 50);
         }
         TOPICS.forEach(function (t) {
@@ -2159,6 +2237,56 @@
     if ('serviceWorker' in navigator && location.protocol === 'https:') {
         window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
     }
+    </script>
+
+    <script>
+    // Otvoreno / Zatvoreno (vreme se računa po beogradskom satu, bez obzira gde je posetilac)
+    (function () {
+        var els = document.querySelectorAll('.dn-hours');
+        if (!els.length) return;
+        var L = window.dnLang || 'sr';
+        var OPEN_MIN = 8 * 60, CLOSE_MIN = 18 * 60;           // Pon - Sub 08:00 - 18:00
+        var DAYS = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 };
+        var T = {
+            sr: { open: 'Otvoreno', closed: 'Zatvoreno', until: 'radi do 18:00h', opensIn: 'Otvara za', h: 'h', min: 'min', mon: 'Otvara u ponedeljak u 08:00h' },
+            en: { open: 'Open', closed: 'Closed', until: 'until 18:00', opensIn: 'Opens in', h: 'h', min: 'min', mon: 'Opens Monday at 08:00' },
+            de: { open: 'Geöffnet', closed: 'Geschlossen', until: 'bis 18:00 Uhr', opensIn: 'Öffnet in', h: 'Std.', min: 'Min.', mon: 'Öffnet am Montag um 08:00 Uhr' }
+        }[L] || null;
+        if (!T) T = { open: 'Otvoreno', closed: 'Zatvoreno', until: 'radi do 18:00h', opensIn: 'Otvara za', h: 'h', min: 'min', mon: 'Otvara u ponedeljak u 08:00h' };
+        function belgrade() {
+            var parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Belgrade', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+            var o = {};
+            parts.forEach(function (p) { o[p.type] = p.value; });
+            return { day: DAYS[o.weekday] || 1, mins: (parseInt(o.hour, 10) % 24) * 60 + parseInt(o.minute, 10) };
+        }
+        function fmt(total) {
+            var h = Math.floor(total / 60), m = total % 60, out = [];
+            if (h) out.push(h + ' ' + T.h);
+            if (m || !h) out.push(m + ' ' + T.min);
+            return out.join(' ');
+        }
+        function render() {
+            var n, html;
+            try { n = belgrade(); } catch (e) { return; }
+            var isOpen = n.day <= 6 && n.mins >= OPEN_MIN && n.mins < CLOSE_MIN;
+            if (isOpen) {
+                html = '<span class="dn-h dn-h-open"><i></i><b>' + T.open + '</b><span>• ' + T.until + '</span></span>';
+            } else {
+                var wait, label;
+                if (n.day <= 6 && n.mins < OPEN_MIN) wait = OPEN_MIN - n.mins;
+                else {
+                    var nd = (n.day % 7) + 1, extra = 0;
+                    if (nd === 7) { nd = 1; extra = 1440; }       // nedelja je neradna
+                    wait = (1440 - n.mins) + extra + OPEN_MIN;
+                }
+                label = wait < 1440 ? T.opensIn + ' ' + fmt(wait) : T.mon;
+                html = '<span class="dn-h dn-h-closed"><i></i><b>' + T.closed + '</b><span>• ' + label + '</span></span>';
+            }
+            els.forEach(function (el) { el.innerHTML = html; });
+        }
+        render();
+        setInterval(render, 30000);
+    })();
     </script>
 </body>
 </html>
