@@ -12,7 +12,8 @@
     <meta name="theme-color" content="#0B132B">
     <meta name="author" content="DN Cargo Vranje">
     <link rel="icon" href="3120.jpg">
-    <link rel="apple-touch-icon" href="3120.jpg">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="manifest" href="manifest.json">
 
     <!-- Open Graph (Viber, Facebook, WhatsApp pregledi linka) -->
     <meta property="og:type" content="website">
@@ -2129,6 +2130,13 @@
         vp.addEventListener('click', function (e) { if (dragged) { e.stopPropagation(); e.preventDefault(); dragged = false; } }, true);
         restart();
     })();
+    </script>
+
+    <script>
+    // Registracija service worker-a (aplikacija / instalacija na telefon)
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+    }
     </script>
 </body>
 </html>
