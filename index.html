@@ -360,7 +360,7 @@
         /* ===== UVODNA ANIMACIJA ===== */
         #dn-splash { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer;
             background: radial-gradient(700px 500px at 50% 40%, #16224a 0%, #0B132B 60%, #070d1f 100%);
-            transition: opacity .7s ease, visibility .7s ease; animation: dn-splash-failsafe .01s linear 5s forwards; }
+            transition: opacity .7s ease, visibility .7s ease; animation: dn-splash-failsafe .01s linear 10s forwards; }
         #dn-splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
         @keyframes dn-splash-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
         .dn-splash-inner { width: min(420px, 86vw); text-align: center; color: #fff; }
@@ -519,6 +519,23 @@
         .dn-badges { position:absolute; top:12px; left:12px; z-index:3; display:flex; flex-wrap:wrap; gap:6px; max-width:calc(100% - 24px); pointer-events:none; }
         .dn-badges span { background:rgba(11,19,43,.82); color:#F59E0B; border:1px solid rgba(245,158,11,.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); font-weight:800; font-size:10px; line-height:1; letter-spacing:.06em; text-transform:uppercase; padding:6px 9px; border-radius:9999px; box-shadow:0 4px 12px -4px rgba(0,0,0,.5); }
         .dn-card-photo { position: relative; overflow: hidden; }
+
+        /* Uvodni ekran: tekst "Mi povezujemo svet" posle animacije (2,6 s), sajt se otvara oko 4,5 s kasnije */
+        .dn-splash-motto { position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 11vh); text-align: center; padding: 0 16px; pointer-events: none; }
+        .dn-splash-motto i { display: block; font-size: 22px; color: #F59E0B; margin-bottom: 10px; opacity: 0; animation: dn-splash-fade .6s ease 2.6s forwards; }
+        .dn-splash-motto span { display: inline-block; padding: 4px 0 4px .2em; font: 800 clamp(17px, 5vw, 24px)/1.2 'Montserrat', sans-serif; letter-spacing: .2em; text-transform: uppercase;
+            background: linear-gradient(90deg, #fff, #FDE68A, #fff); -webkit-background-clip: text; background-clip: text; color: transparent;
+            clip-path: inset(0 100% 0 0); animation: dn-splash-wipe 1s ease 2.6s forwards; }
+        @keyframes dn-splash-wipe { to { clip-path: inset(0 0 0 0); } }
+        @media (prefers-reduced-motion: reduce) { .dn-splash-motto i, .dn-splash-motto span { animation-duration: .01ms !important; animation-delay: 0s !important; } }
+
+        /* Ikone društvenih mreža (O nama) */
+        .dn-soc { width: 44px; height: 44px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background: #0B132B; color: #F59E0B; border: 2px solid rgba(245,158,11,.5); font-size: 18px; transition: transform .2s ease, background .2s ease, color .2s ease; }
+        .dn-soc:hover { background: #F59E0B; color: #0B132B; transform: translateY(-3px) scale(1.06); }
+        /* Izabrana ikona (klik ili držanje): blago se njiše levo-desno */
+        .dn-soc.sel { background: #F59E0B; color: #0B132B; border-color: #F59E0B; box-shadow: 0 0 0 5px rgba(245,158,11,.25); animation: dn-soc-wiggle .6s ease-in-out infinite; }
+        @keyframes dn-soc-wiggle { 0%, 100% { transform: rotate(0) scale(1.08); } 25% { transform: rotate(-14deg) scale(1.08); } 75% { transform: rotate(14deg) scale(1.08); } }
+        @media (prefers-reduced-motion: reduce) { .dn-soc.sel { animation: none; transform: scale(1.08); } }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-amber-500 selection:text-white">
@@ -532,6 +549,7 @@
             <div class="dn-splash-road"><i class="fa-solid fa-truck-fast"></i></div>
             <div class="dn-splash-bar"><span></span></div>
         </div>
+        <div class="dn-splash-motto"><i class="fa-solid fa-earth-europe"></i><span>Mi povezujemo svet</span></div>
     </div>
     <script>
     (function () {
@@ -547,9 +565,9 @@
             root.style.overflow = '';
             setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 900);
         }
-        function ready() { setTimeout(finish, Math.max(0, 2600 - (Date.now() - t0))); }
+        function ready() { setTimeout(finish, Math.max(0, 8100 - (Date.now() - t0))); }
         if (document.readyState === 'complete') ready(); else window.addEventListener('load', ready);
-        setTimeout(finish, 4500); // sigurnosni rok
+        setTimeout(finish, 10000); // sigurnosni rok
         el.addEventListener('click', finish); // klik preskače animaciju
     })();
     </script>
@@ -702,6 +720,10 @@
                     <p><i class="fa-brands fa-viber text-emerald-600 mr-1"></i> <a href="viber://chat?number=%2B38169650040">Viber Chat</a></p>
                 </div>
             </div>
+
+            <div id="dn-visits" class="mt-6 pt-4 border-t border-slate-100 text-center" hidden>
+                <span class="text-[11px] font-semibold uppercase tracking-widest" style="color:#0D9488;"><i class="fa-solid fa-eye mr-1.5"></i><span>Broj poseta:</span> <b id="dn-visits-n" class="font-extrabold text-sm" style="font-variant-numeric:tabular-nums;">39</b></span>
+            </div>
         </div>
     </div>
 
@@ -826,6 +848,11 @@
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 
                 <div class="relative">
+                    <div id="dn-social" class="relative z-20 flex items-center justify-center lg:justify-start gap-3 mb-5">
+                        <a href="#" target="_blank" rel="noopener" class="dn-soc" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" rel="noopener" class="dn-soc" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener" class="dn-soc" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
                     <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                         <video src="intro.mp4" class="w-full h-48 object-contain bg-navy-950 p-4" autoplay muted loop playsinline preload="auto" aria-label="DN Cargo Logo"></video>
                     </div>
@@ -2324,6 +2351,49 @@
         render();
         setInterval(render, 30000);
     })();
+
+        // ===== Brojač poseta (prikazuje 39 + stvarne posete; uvećava se jednom po poseti) =====
+        (function () {
+            var box = document.getElementById('dn-visits'), out = document.getElementById('dn-visits-n');
+            if (!box || !out) return;
+            var BASE = 39, URL = 'https://api.counterapi.dev/v1/dncargo-sajt-net/posete';
+            var counted = false; try { counted = sessionStorage.getItem('dnVisitCounted') === '1'; } catch (e) {}
+            function show(n) {
+                var total = BASE + n, t0 = performance.now();
+                box.hidden = false;
+                (function step(now) {
+                    var k = Math.min((now - t0) / 900, 1);
+                    out.textContent = Math.round(total * (1 - Math.pow(1 - k, 3))).toLocaleString('sr-RS');
+                    if (k < 1) requestAnimationFrame(step);
+                })(t0);
+            }
+            fetch(URL + (counted ? '' : '/up'), { cache: 'no-store' })
+                .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+                .then(function (d) {
+                    var n = Number(d.count != null ? d.count : d.value);
+                    if (!isFinite(n)) throw 0;
+                    try { sessionStorage.setItem('dnVisitCounted', '1'); localStorage.setItem('dnVisitsLast', String(n)); } catch (e) {}
+                    show(n);
+                })
+                .catch(function () {
+                    var last = null; try { last = localStorage.getItem('dnVisitsLast'); } catch (e) {}
+                    if (last !== null && isFinite(Number(last))) show(Number(last));   // poslednja poznata vrednost
+                });
+        })();
+
+        // Ikone mreža: dok linkovi nisu upisani (href="#"), klik ne vraća stranicu na vrh
+        document.querySelectorAll('#dn-social a').forEach(function (a) {
+            a.addEventListener('click', function (e) { if (a.getAttribute('href') === '#') e.preventDefault(); });
+            // izbor: ikona se njiše dok je držite, a posle klika još kratko (min. 0,9 s)
+            var held = false, timer = null;
+            function on() { a.classList.add('sel'); clearTimeout(timer); }
+            function off() { clearTimeout(timer); timer = setTimeout(function () { if (!held) a.classList.remove('sel'); }, 900); }
+            a.addEventListener('pointerdown', function () { held = true; on(); });
+            ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) {
+                a.addEventListener(ev, function () { held = false; off(); });
+            });
+            a.addEventListener('click', function () { on(); off(); });
+        });
     </script>
 </body>
 </html>
