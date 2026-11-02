@@ -360,7 +360,7 @@
         /* ===== UVODNA ANIMACIJA ===== */
         #dn-splash { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer;
             background: radial-gradient(700px 500px at 50% 40%, #16224a 0%, #0B132B 60%, #070d1f 100%);
-            transition: opacity .7s ease, visibility .7s ease; animation: dn-splash-failsafe .01s linear 10s forwards; }
+            transition: opacity .7s ease, visibility .7s ease; animation: dn-splash-failsafe .01s linear 8s forwards; }
         #dn-splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
         @keyframes dn-splash-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
         .dn-splash-inner { width: min(420px, 86vw); text-align: center; color: #fff; }
@@ -583,9 +583,9 @@
             root.style.overflow = '';
             setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 900);
         }
-        function ready() { setTimeout(finish, Math.max(0, 8100 - (Date.now() - t0))); }
+        function ready() { setTimeout(finish, Math.max(0, 5600 - (Date.now() - t0))); }
         if (document.readyState === 'complete') ready(); else window.addEventListener('load', ready);
-        setTimeout(finish, 10000); // sigurnosni rok
+        setTimeout(finish, 8000); // sigurnosni rok
         el.addEventListener('click', finish); // klik preskače animaciju
     })();
     </script>
