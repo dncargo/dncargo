@@ -1,0 +1,25 @@
+name: Dnevni Backup Projekta
+​on:
+schedule:
+# Pokreće se automatski svaki dan u ponoć po UTC vremenu (00:00)
+- cron: '0 0 * * *'
+​Omogućava ručno pokretanje na klik dugmeta po potrebi
+​workflow_dispatch:
+​jobs:
+create-backup-artifact:
+name: Generisanje ZIP Bekapa
+runs-on: ubuntu-latest
+​steps:
+- name: Preuzmi najnoviju verziju koda
+uses: actions/checkout@v4
+​- name: Spakuj projekat u ZIP arhivu
+run: |
+ZIP_NAME="dncargo-backup-$(date +'%Y-%m-%d').zip"
+zip -r "$ZIP_NAME" . -x ".git/" ".github/"
+echo "ZIP_FILE=$ZIP_NAME" >> $GITHUB_ENV
+​- name: Sačuvaj bekap arhivu na GitHub-u
+uses: actions/upload-artifact@v4
+with:
+name: dncargo-dnevni-bekap
+path: ${{ env.ZIP_FILE }}
+retention-days: 30 # Bekap se automatski čuva narednih 30 dana
