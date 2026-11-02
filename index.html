@@ -550,7 +550,7 @@
         #dn-fav .dn-fav-help i { color: #F59E0B; margin-right: 6px; }
         #dn-fav .dn-fav-x { position: absolute; top: 6px; right: 8px; width: 30px; height: 30px; border: 0; border-radius: 9999px; background: rgba(255,255,255,.1); color: #fff; font-size: 18px; line-height: 1; cursor: pointer; }
         #dn-fav .dn-fav-bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: linear-gradient(90deg, #F59E0B, #F97316); transform-origin: left; }
-        #dn-fav.show .dn-fav-bar { animation: dn-fav-bar var(--dn-fav-dur, 5.5s) linear forwards; }
+        #dn-fav.show .dn-fav-bar { animation: dn-fav-bar var(--dn-fav-dur, 5s) linear forwards; }
         @keyframes dn-fav-bar { from { transform: scaleX(1); } to { transform: scaleX(0); } }
         @keyframes dn-fav-pulse { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.18) rotate(12deg); } }
         @media (prefers-reduced-motion: reduce) { #dn-fav { transition: opacity .2s ease; transform: translate(-50%, 0); } #dn-fav .dn-fav-main i { animation: none; } }
@@ -1754,7 +1754,7 @@
         <button type="button" class="dn-spin-close" aria-label="Sakrij značku" onclick="document.getElementById('dn-spin').style.display='none'">&times;</button>
     </div>
 
-    <!-- POPUP: DODAJ U OMILJENE (prvi put, ~5,5 s) -->
+    <!-- POPUP: DODAJ U OMILJENE (prvi put, 5 s) -->
     <div id="dn-fav" role="status" aria-live="polite" hidden>
         <button type="button" class="dn-fav-main" id="dn-fav-btn"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Dodaj stranicu u omiljene</span></button>
         <p class="dn-fav-help" id="dn-fav-help" hidden>
@@ -2432,7 +2432,7 @@
             a.addEventListener('click', function () { on(); off(); });
         });
 
-        // ===== Popup "Dodaj stranicu u omiljene": samo prvi put, ~5,5 s; klik prikazuje kako se dodaje =====
+        // ===== Popup "Dodaj stranicu u omiljene": samo prvi put, 5 s; klik prikazuje kako se dodaje =====
         (function () {
             var box = document.getElementById('dn-fav'); if (!box) return;
             var KEY = 'dnFavShown';
@@ -2446,7 +2446,7 @@
             function open() {
                 box.hidden = false; void box.offsetWidth;
                 try { localStorage.setItem(KEY, '1'); } catch (e) {}
-                arm(5500);
+                arm(5000);
             }
             // Pregledači ne dozvoljavaju skripti da samo doda oznaku, pa klik pokazuje tačan postupak (Ctrl+D itd.)
             btn.addEventListener('click', function () { btn.hidden = true; help.hidden = false; arm(7000); });
