@@ -2,6 +2,8 @@
 <html lang="sr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; frame-src https://www.google.com; connect-src 'self' https://formsubmit.co https://api.counterapi.dev">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DN Cargo Vranje | Pouzdan Logistički Partner - Kombi Cerada do 3.5t</title>
 
@@ -610,7 +612,7 @@
                     <i class="fa-solid fa-phone text-amber-500"></i>
                     <span>063 / 407-717</span>
                 </a>
-                <a href="viber://chat?number=%2B38163407717" target="_blank" class="hover:text-emerald-400 transition flex items-center gap-2 font-medium text-emerald-400">
+                <a href="viber://chat?number=%2B38163407717" target="_blank" rel="noopener" class="hover:text-emerald-400 transition flex items-center gap-2 font-medium text-emerald-400">
                     <i class="fa-brands fa-viber"></i>
                     <span>Viber Kontakt</span>
                 </a>
@@ -1217,14 +1219,15 @@
                         <h3 class="text-2xl font-black text-navy-900 font-heading mb-6">Kalkulator Kombi Transporta</h3>
 
                         <form id="calc-form" onsubmit="handleCalc(event)" class="space-y-4">
+<input type="text" name="website" class="dn-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;">
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Mesto Utovara</label>
-                                    <input type="text" id="calc-from" required placeholder="Npr. Vranje, Srbija" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <input type="text" id="calc-from" maxlength="100" required placeholder="Npr. Vranje, Srbija" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Mesto Istovara</label>
-                                    <input type="text" id="calc-to" required placeholder="Npr. Minhen, Nemačka" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <input type="text" id="calc-to" maxlength="100" required placeholder="Npr. Minhen, Nemačka" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                                 </div>
                             </div>
 
@@ -1250,11 +1253,11 @@
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Vaš Email</label>
-                                    <input type="email" id="calc-email" required placeholder="vasa@firma.rs" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <input type="email" id="calc-email" maxlength="100" required placeholder="vasa@firma.rs" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Broj Telefona</label>
-                                    <input type="tel" id="calc-phone" required placeholder="06x / xxx - xxx" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <input type="tel" id="calc-phone" maxlength="30" required placeholder="06x / xxx - xxx" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                                 </div>
                             </div>
 
@@ -1353,15 +1356,16 @@
                         <p class="text-xs text-slate-400 mb-6">Popunite podatke ili pozovite <strong class="text-amber-400">063 / 407-717</strong>.</p>
 
                         <form id="driver-form" onsubmit="handleDriverSubmit(event)" class="space-y-4">
+<input type="text" name="website" class="dn-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;">
                             <div>
                                 <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Ime i Prezime</label>
-                                <input type="text" id="driver-name" required placeholder="Vaše ime i prezime" class="w-full px-4 py-3 bg-navy-800 border border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-white">
+                                <input type="text" id="driver-name" maxlength="80" required placeholder="Vaše ime i prezime" class="w-full px-4 py-3 bg-navy-800 border border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-white">
                             </div>
 
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Broj Telefona</label>
-                                    <input type="tel" id="driver-phone" required placeholder="06x / xxx - xxx" class="w-full px-4 py-3 bg-navy-800 border border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-white">
+                                    <input type="tel" id="driver-phone" maxlength="30" required placeholder="06x / xxx - xxx" class="w-full px-4 py-3 bg-navy-800 border border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-white">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Kategorija Vozačke</label>
@@ -1371,7 +1375,7 @@
 
                             <div>
                                 <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Radno Iskustvo u Prevozu</label>
-                                <input type="text" id="driver-exp" placeholder="Npr. 2 godine u kombi prevozu" class="w-full px-4 py-3 bg-navy-800 border border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-white">
+                                <input type="text" id="driver-exp" maxlength="200" placeholder="Npr. 2 godine u kombi prevozu" class="w-full px-4 py-3 bg-navy-800 border border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-white">
                             </div>
 
                             <button type="submit" class="w-full bg-amber-500 hover:bg-amber-hover text-white font-black py-4 rounded-xl transition text-sm uppercase tracking-wider shadow-lg">
@@ -1599,31 +1603,32 @@
                         <h3 class="text-xl font-bold text-navy-900 font-heading mb-6">Pošaljite Poruku (Direktno na Mejl)</h3>
 
                         <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+<input type="text" name="website" class="dn-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;">
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Ime i Prezime</label>
-                                    <input type="text" id="con-name" required placeholder="Vaše ime" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                                    <input type="text" id="con-name" maxlength="80" required placeholder="Vaše ime" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Kompanija</label>
-                                    <input type="text" id="con-company" placeholder="Naziv firme" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                                    <input type="text" id="con-company" maxlength="100" placeholder="Naziv firme" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
                                 </div>
                             </div>
 
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Email Adresa</label>
-                                    <input type="email" id="con-email" required placeholder="vas@email.com" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                                    <input type="email" id="con-email" maxlength="100" required placeholder="vas@email.com" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Telefon</label>
-                                    <input type="tel" id="con-phone" placeholder="06x..." class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                                    <input type="tel" id="con-phone" maxlength="30" placeholder="06x..." class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Poruka / Upit za Kombi Ture</label>
-                                <textarea id="con-msg" rows="4" required placeholder="Napišite vaše pitanje..." class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"></textarea>
+                                <textarea id="con-msg" maxlength="2000" rows="4" required placeholder="Napišite vaše pitanje..." class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"></textarea>
                             </div>
 
                             <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-4 rounded-xl transition duration-300 text-sm font-heading flex items-center justify-center gap-2">
@@ -1718,30 +1723,31 @@
             <p class="text-xs text-slate-500 mb-6">Popunite detalje relacije i poslaćemo vam procenu cene.</p>
 
             <form onsubmit="handleModalQuote(event)" class="space-y-4">
+<input type="text" name="website" class="dn-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Ime / Naziv Kompanije</label>
-                    <input type="text" id="m-name" required placeholder="Vaše ime ili firma" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <input type="text" id="m-name" maxlength="100" required placeholder="Vaše ime ili firma" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Telefon</label>
-                        <input type="tel" id="m-phone" required placeholder="06x..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <input type="tel" id="m-phone" maxlength="30" required placeholder="06x..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email</label>
-                        <input type="email" id="m-email" required placeholder="email@adresa.rs" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <input type="email" id="m-email" maxlength="100" required placeholder="email@adresa.rs" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Relacija (Od - Do)</label>
-                        <input type="text" id="m-route" required placeholder="Npr. Vranje - Minhen" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <input type="text" id="m-route" maxlength="150" required placeholder="Npr. Vranje - Minhen" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Težina / Palete</label>
-                        <input type="text" id="m-cargo" placeholder="Npr. 1t / 4 palete" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <input type="text" id="m-cargo" maxlength="100" placeholder="Npr. 1t / 4 palete" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                     </div>
                 </div>
 
@@ -1774,7 +1780,7 @@
 
     <!-- PLUTAJUĆA DUGMAD ZA KONTAKT -->
     <div class="dn-fab">
-        <a href="viber://chat?number=%2B38163407717" class="fab-viber" aria-label="Viber poruka" target="_blank"><i class="fa-brands fa-viber"></i></a>
+        <a href="viber://chat?number=%2B38163407717" class="fab-viber" aria-label="Viber poruka" target="_blank" rel="noopener"><i class="fa-brands fa-viber"></i></a>
         <a href="tel:063407717" class="fab-call" aria-label="Pozovite 063 407-717"><i class="fa-solid fa-phone"></i></a>
     </div>
 
@@ -1897,12 +1903,21 @@
                 'Okvirna procena': estText
             }, email)
             .then(() => { note.innerHTML = note.dataset.orig; form.reset(); })
-            .catch(() => { note.textContent = 'Slanje nije uspelo. Otvaramo Vaš mejl program da upit pošaljete ručno...'; })
+            .catch(err => { note.textContent = (err && err.message === 'throttle') ? 'Molimo sačekajte nekoliko sekundi pre sledećeg slanja.' : 'Slanje nije uspelo. Otvaramo Vaš mejl program da upit pošaljete ručno...'; })
             .finally(() => { if (btn) btn.disabled = false; });
         }
 
         // Zajednička funkcija: automatsko slanje na mejl (FormSubmit), uz mailto rezervu
         function dnSendMail(subject, fields, replyTo) {
+            // Zaštita od spama: skriveno polje (botovi ga popune) i pauza između slanja
+            if (Array.from(document.querySelectorAll('.dn-hp')).some(i => i.value)) return Promise.resolve();
+            try {
+                const last = parseInt(localStorage.getItem('dn_last_send') || '0', 10);
+                if (Date.now() - last < 20000) return Promise.reject(new Error('throttle'));
+                localStorage.setItem('dn_last_send', String(Date.now()));
+            } catch (_) {}
+            Object.keys(fields).forEach(k => { if (typeof fields[k] === 'string') fields[k] = fields[k].slice(0, 2000); });
+            subject = String(subject).slice(0, 200);
             const ctrl = new AbortController();
             const timer = setTimeout(() => ctrl.abort(), 6000);
             return fetch('https://formsubmit.co/ajax/dncargo.orders@gmail.com', {
@@ -1915,6 +1930,7 @@
             .then(r => r.json().then(d => ({ ok: r.ok, d })))
             .then(({ ok, d }) => { if (!ok || d.success === 'false' || d.success === false) throw new Error('send failed'); })
             .catch(err => {
+                if (err && err.message === 'throttle') throw err;
                 const body = Object.keys(fields).map(k => `${k}: ${fields[k]}`).join('\n');
                 window.location.href = `mailto:dncargo.orders@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 throw err;
@@ -1930,7 +1946,7 @@
             if (box) { box.dataset.orig = box.dataset.orig || box.textContent.trim(); box.textContent = 'Šaljemo, trenutak...'; box.classList.remove('hidden'); }
             dnSendMail(subject, fields, replyTo)
                 .then(() => { if (box) box.textContent = box.dataset.orig; form.reset(); if (onOk) onOk(); })
-                .catch(() => { if (box) box.textContent = 'Slanje nije uspelo. Otvaramo Vaš mejl program da poruku pošaljete ručno...'; })
+                .catch(err => { if (box) box.textContent = (err && err.message === 'throttle') ? 'Molimo sačekajte nekoliko sekundi pre sledećeg slanja.' : 'Slanje nije uspelo. Otvaramo Vaš mejl program da poruku pošaljete ručno...'; })
                 .finally(() => { if (btn) btn.disabled = false; });
         }
 
