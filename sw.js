@@ -1,6 +1,6 @@
 /* DN Cargo - service worker (rad i sa slabom vezom) */
-const CACHE = 'dncargo-v4';
-const CORE = ['./', 'index.html', 'Onama.html', 'FAQ.html', 'i18n.js', 'manifest.json', 'icon-192.png', 'icon-512.png'];
+const CACHE = 'dncargo-v5';
+const CORE = ['./', 'index.html', 'Onama.html', 'FAQ.html', 'Rute.html', 'i18n.js', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(
