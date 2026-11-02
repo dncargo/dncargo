@@ -641,7 +641,7 @@
                 </a>
 
                 <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-semibold text-slate-200 text-sm">
+                <nav class="hidden items-center gap-5 xl:gap-7 font-semibold text-slate-200 text-sm">
                     <a href="#pocetna" class="hover:text-amber-500 transition text-amber-500">Početna</a>
                     <a href="#o-nama" class="hover:text-amber-500 transition">O Nama</a>
                     <a href="#usluge" class="hover:text-amber-500 transition">Usluge</a>
@@ -654,7 +654,7 @@
                     <a href="#kontakt" class="hover:text-amber-500 transition">Kontakt</a>
                 </nav>
 
-                <div class="hidden lg:flex dn-lang on-dark" role="group" aria-label="Language" data-no-i18n>
+                <div class="hidden dn-lang on-dark" role="group" aria-label="Language" data-no-i18n>
                     <button type="button" data-setlang="sr">SR</button>
                     <button type="button" data-setlang="en">EN</button>
                     <button type="button" data-setlang="de">DE</button>
@@ -665,7 +665,7 @@
                         <span>Zatražite Ponudu</span>
                     </button>
                 </div>
-                <button id="mobile-toggle" class="lg:hidden text-white hover:text-amber-500 text-2xl p-2 focus:outline-none" aria-label="Meni">
+                <button id="mobile-toggle" class="text-white hover:text-amber-500 text-2xl p-2 focus:outline-none" aria-label="Meni">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -2471,9 +2471,9 @@
             var btn = document.getElementById('mobile-toggle'); if (!btn) return;
             var used = false, last = 0, count = 0, MAX = 6;
             try { used = sessionStorage.getItem('dnMenuUsed') === '1' || (+localStorage.getItem('dnMenuOpens') || 0) >= 3; } catch (e) {}
-            function pulse() {
+            function pulse(force) {
                 var now = Date.now();
-                if (used || document.hidden || count >= MAX || now - last < 6000) return;
+                if (force !== true && (used || document.hidden || count >= MAX || now - last < 6000)) return;
                 last = now; count++;
                 btn.classList.remove('dn-attn'); void btn.offsetWidth; btn.classList.add('dn-attn');
                 setTimeout(function () { btn.classList.remove('dn-attn'); }, 3900);
@@ -2482,10 +2482,10 @@
                 used = true; btn.classList.remove('dn-attn');
                 try { sessionStorage.setItem('dnMenuUsed', '1'); localStorage.setItem('dnMenuOpens', String((+localStorage.getItem('dnMenuOpens') || 0) + 1)); } catch (e) {}
             });
-            // 1) pri otvaranju sajta (posle uvodnog ekrana)
+            // 1) pri svakom otvaranju sajta (posle uvodnog ekrana) – uvek, bez obzira na ranija otvaranja menija
             var tries = 0, wait = setInterval(function () {
                 tries++;
-                if (!document.getElementById('dn-splash') || tries > 60) { clearInterval(wait); setTimeout(pulse, 700); }
+                if (!document.getElementById('dn-splash') || tries > 60) { clearInterval(wait); setTimeout(function () { pulse(true); }, 700); }
             }, 250);
             // 2) meni neaktivan: povremeno podseti
             setInterval(pulse, 20000);
