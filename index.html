@@ -1873,58 +1873,45 @@
             const est = Math.round(base + (weight * 0.12));
             const estText = `€${est} - €${Math.round(est * 1.15)}`;
 
+            // Procena se prikazuje odmah, slanje mejla ide u pozadini
             document.getElementById('calc-val').innerText = estText;
             const out = document.getElementById('calc-output');
             out.classList.remove('hidden');
 
-            const from = val('calc-from'), to = val('calc-to'), pallets = val('calc-pallets');
-            const email = val('calc-email'), phone = val('calc-phone');
-            const btn = e.target.querySelector('button[type=submit]');
+            const from = val('calc-from'), to = val('calc-to'), email = val('calc-email');
+            const form = e.target;
+            const btn = form.querySelector('button[type=submit]');
             const note = out.querySelector('p');
-            const origNote = note.innerHTML;
+            note.dataset.orig = note.dataset.orig || note.innerHTML;
+            note.textContent = 'Šaljemo upit, trenutak...';
             if (btn) btn.disabled = true;
-            note.textContent = 'Šaljemo Vaš upit...';
 
-            fetch('https://formsubmit.co/ajax/dncargo.orders@gmail.com', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                    _subject: `Upit iz kalkulatora - ${from} → ${to}`,
-                    _template: 'table',
-                    _captcha: 'false',
-                    _replyto: email,
-                    email: email,
-                    'Polazište': from,
-                    'Odredište': to,
-                    'Težina (kg)': weight,
-                    'Tip prevoza': typeLabel,
-                    'Broj paleta': pallets || '-',
-                    'Telefon': phone,
-                    'Okvirna procena': estText
-                })
-            })
-            .then(r => r.json().then(d => ({ ok: r.ok, d })))
-            .then(({ ok, d }) => {
-                if (!ok || d.success === 'false' || d.success === false) throw new Error('send failed');
-                note.innerHTML = origNote;
-                e.target.reset();
-            })
-            .catch(() => {
-                note.textContent = 'Slanje nije uspelo. Otvaramo Vaš mejl program da upit pošaljete ručno...';
-                const subject = encodeURIComponent(`Upit iz kalkulatora - ${from} → ${to}`);
-                const body = encodeURIComponent(`Polazište: ${from}\nOdredište: ${to}\nTežina: ${weight} kg\nTip prevoza: ${typeLabel}\nBroj paleta: ${pallets || '-'}\nEmail: ${email}\nTelefon: ${phone}\nOkvirna procena: ${estText}`);
-                window.location.href = `mailto:dncargo.orders@gmail.com?subject=${subject}&body=${body}`;
-            })
+            dnSendMail(`Upit iz kalkulatora - ${from} → ${to}`, {
+                'Polazište': from,
+                'Odredište': to,
+                'Težina (kg)': weight,
+                'Tip prevoza': typeLabel,
+                'Broj paleta': val('calc-pallets') || '-',
+                'Email': email,
+                'Telefon': val('calc-phone'),
+                'Okvirna procena': estText
+            }, email)
+            .then(() => { note.innerHTML = note.dataset.orig; form.reset(); })
+            .catch(() => { note.textContent = 'Slanje nije uspelo. Otvaramo Vaš mejl program da upit pošaljete ručno...'; })
             .finally(() => { if (btn) btn.disabled = false; });
         }
 
         // Zajednička funkcija: automatsko slanje na mejl (FormSubmit), uz mailto rezervu
         function dnSendMail(subject, fields, replyTo) {
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), 6000);
             return fetch('https://formsubmit.co/ajax/dncargo.orders@gmail.com', {
                 method: 'POST',
+                signal: ctrl.signal,
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify(Object.assign({ _subject: subject, _template: 'table', _captcha: 'false', _replyto: replyTo || '' }, fields))
             })
+            .finally(() => clearTimeout(timer))
             .then(r => r.json().then(d => ({ ok: r.ok, d })))
             .then(({ ok, d }) => { if (!ok || d.success === 'false' || d.success === false) throw new Error('send failed'); })
             .catch(err => {
@@ -1940,7 +1927,7 @@
             const btn = form.querySelector('button[type=submit]');
             const box = successId ? document.getElementById(successId) : null;
             if (btn) btn.disabled = true;
-            if (box) { box.dataset.orig = box.dataset.orig || box.textContent.trim(); box.textContent = 'Šaljemo...'; box.classList.remove('hidden'); }
+            if (box) { box.dataset.orig = box.dataset.orig || box.textContent.trim(); box.textContent = 'Šaljemo, trenutak...'; box.classList.remove('hidden'); }
             dnSendMail(subject, fields, replyTo)
                 .then(() => { if (box) box.textContent = box.dataset.orig; form.reset(); if (onOk) onOk(); })
                 .catch(() => { if (box) box.textContent = 'Slanje nije uspelo. Otvaramo Vaš mejl program da poruku pošaljete ručno...'; })
