@@ -66,7 +66,7 @@
         "Saturday"
       ],
       "opens": "08:00",
-      "closes": "18:00"
+      "closes": "16:00"
     }
   ],
   "areaServed": [
@@ -1470,7 +1470,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-navy-900 text-sm font-heading">Radno vreme</h4>
-                                <p class="text-sm text-slate-600">Pon - Sub: 08:00 - 18:00h</p>
+                                <p class="text-sm text-slate-600">Pon - Sub: 08:00 - 16:00h</p>
                                 <p class="mt-2"><span class="dn-hours" data-no-i18n></span></p>
                             </div>
                         </div>
@@ -1693,7 +1693,7 @@
                         <li><i class="fa-solid fa-phone text-amber-500 mr-2"></i> <a href="tel:069650040">069 / 650-040</a></li>
                         <li><i class="fa-brands fa-viber text-emerald-500 mr-2"></i> <a href="viber://chat?number=%2B38169650040">Viber Chat</a></li>
                         <li><i class="fa-solid fa-envelope text-amber-500 mr-2"></i> <a href="mailto:danijelnedeljkovic.dn@gmail.com">danijelnedeljkovic.dn@gmail.com</a></li>
-                        <li><i class="fa-solid fa-clock text-amber-500 mr-2"></i> Pon - Sub: 08:00 - 18:00h</li>
+                        <li><i class="fa-solid fa-clock text-amber-500 mr-2"></i> Pon - Sub: 08:00 - 16:00h</li>
                         <li class="pl-6"><span class="dn-hours" data-no-i18n></span></li>
                     </ul>
                 </div>
@@ -2171,9 +2171,9 @@
               link: ['#usluge', tx('Pogledaj usluge', 'View services', 'Leistungen ansehen')] },
             { label: tx('Radno vreme', 'Working hours', 'Öffnungszeiten'),
               keys: ['radno', 'vreme', 'radite', 'otvoren', 'sati', 'hours', 'open', 'opening', 'when', 'zeit', 'offen', 'geoeffnet', 'geöffnet', 'wann'],
-              text: tx('Kancelarija radi Pon - Sub: 08:00 - 18:00h. Ekspres ture su dostupne 24/7 po dogovoru.\n',
-                       'The office is open Mon - Sat: 08:00 - 18:00. Express trips are available 24/7 by arrangement.\n',
-                       'Das Büro ist Mo - Sa von 08:00 bis 18:00 Uhr geöffnet. Express-Fahrten sind nach Absprache rund um die Uhr möglich.\n') + PHONES },
+              text: tx('Kancelarija radi Pon - Sub: 08:00 - 16:00h. Ekspres ture su dostupne 24/7 po dogovoru.\n',
+                       'The office is open Mon - Sat: 08:00 - 16:00. Express trips are available 24/7 by arrangement.\n',
+                       'Das Büro ist Mo - Sa von 08:00 bis 16:00 Uhr geöffnet. Express-Fahrten sind nach Absprache rund um die Uhr möglich.\n') + PHONES },
             { label: tx('Adresa', 'Address', 'Adresse'),
               keys: ['adres', 'lokacij', 'gde', 'vranj', 'kosovska', 'mapa', 'kancelarij', 'address', 'where', 'location', 'map', 'office', 'adresse', 'wo', 'standort', 'karte', 'büro', 'buro'],
               text: tx('Naša kancelarija je u Vranju, ul. Kosovska br. 43.', 'Our office is in Vranje, Kosovska St. 43.', 'Unser Büro befindet sich in Vranje, ul. Kosovska 43.'),
@@ -2353,14 +2353,14 @@
         var els = document.querySelectorAll('.dn-hours');
         if (!els.length) return;
         var L = window.dnLang || 'sr';
-        var OPEN_MIN = 8 * 60, CLOSE_MIN = 18 * 60;           // Pon - Sub 08:00 - 18:00
+        var OPEN_MIN = 8 * 60, CLOSE_MIN = 16 * 60;           // Pon - Sub 08:00 - 16:00
         var DAYS = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 };
         var T = {
-            sr: { open: 'Otvoreno', closed: 'Zatvoreno', until: 'radi do 18:00h', opensIn: 'Otvara za', h: 'h', min: 'min', mon: 'Otvara u ponedeljak u 08:00h' },
-            en: { open: 'Open', closed: 'Closed', until: 'until 18:00', opensIn: 'Opens in', h: 'h', min: 'min', mon: 'Opens Monday at 08:00' },
-            de: { open: 'Geöffnet', closed: 'Geschlossen', until: 'bis 18:00 Uhr', opensIn: 'Öffnet in', h: 'Std.', min: 'Min.', mon: 'Öffnet am Montag um 08:00 Uhr' }
+            sr: { open: 'Otvoreno', closed: 'Zatvoreno', until: 'radi do 16:00h', opensIn: 'Otvara za', h: 'h', min: 'min', mon: 'Otvara u ponedeljak u 08:00h' },
+            en: { open: 'Open', closed: 'Closed', until: 'until 16:00', opensIn: 'Opens in', h: 'h', min: 'min', mon: 'Opens Monday at 08:00' },
+            de: { open: 'Geöffnet', closed: 'Geschlossen', until: 'bis 16:00 Uhr', opensIn: 'Öffnet in', h: 'Std.', min: 'Min.', mon: 'Öffnet am Montag um 08:00 Uhr' }
         }[L] || null;
-        if (!T) T = { open: 'Otvoreno', closed: 'Zatvoreno', until: 'radi do 18:00h', opensIn: 'Otvara za', h: 'h', min: 'min', mon: 'Otvara u ponedeljak u 08:00h' };
+        if (!T) T = { open: 'Otvoreno', closed: 'Zatvoreno', until: 'radi do 16:00h', opensIn: 'Otvara za', h: 'h', min: 'min', mon: 'Otvara u ponedeljak u 08:00h' };
         function belgrade() {
             var parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Belgrade', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
             var o = {};
