@@ -558,6 +558,12 @@
         @keyframes dn-menu-shake { 0%, 80%, 100% { transform: none; } 12% { transform: rotate(-12deg) scale(1.14); } 28% { transform: rotate(10deg) scale(1.14); } 44% { transform: rotate(-6deg) scale(1.08); } 60% { transform: rotate(3deg) scale(1.04); } }
         @keyframes dn-menu-glow { 0% { box-shadow: 0 0 0 0 rgba(245,158,11,.75); } 70%, 100% { box-shadow: 0 0 0 16px rgba(245,158,11,0); } }
         @media (prefers-reduced-motion: reduce) { #mobile-toggle.dn-attn { animation: none; box-shadow: 0 0 0 3px rgba(245,158,11,.6); } }
+        /* Prijava vozača: tekst ostaje vidljiv i u fokusu (globalni focus pravilo bi pravilo pozadinu belom) */
+        #driver-form input { color:#fff !important; caret-color:#F59E0B; }
+        #driver-form input:focus { background:#1E293B !important; color:#fff !important; }
+        #driver-form input::placeholder { color:#94A3B8; }
+        #driver-form input:-webkit-autofill { -webkit-text-fill-color:#fff; box-shadow:0 0 0 1000px #1E293B inset; }
+        #driver-form input:disabled { color:#FBBF24 !important; -webkit-text-fill-color:#FBBF24; opacity:1; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-amber-500 selection:text-white">
@@ -1369,12 +1375,12 @@
                             </div>
 
                             <button type="submit" class="w-full bg-amber-500 hover:bg-amber-hover text-white font-black py-4 rounded-xl transition text-sm uppercase tracking-wider shadow-lg">
-                                Pošalji Prijavu za Posao (Otvori Mejl)
+                                Pošalji Prijavu za Posao
                             </button>
                         </form>
 
                         <div id="driver-success" class="hidden mt-4 p-4 bg-emerald-900/80 text-emerald-200 rounded-xl text-xs text-center font-semibold">
-                            Otvaramo vaš mejl klijent za slanje prijave...
+                            Prijava je uspešno poslata! Javićemo Vam se uskoro.
                         </div>
                     </div>
                 </div>
@@ -1627,7 +1633,7 @@
                         </form>
 
                         <div id="contact-success" class="hidden mt-4 p-4 bg-emerald-100 text-emerald-800 rounded-xl text-xs text-center font-semibold">
-                            Otvaramo Vaš mejl program sa unetim podacima...
+                            Poruka je uspešno poslata! Javićemo Vam se u najkraćem roku.
                         </div>
                     </div>
                 </div>
@@ -1854,60 +1860,123 @@
 
         function handleCalc(e) {
             e.preventDefault();
-            const weight = parseFloat(document.getElementById('calc-weight').value) || 500;
-            const type = document.getElementById('calc-type').value;
+            const val = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+            const typeEl = document.getElementById('calc-type');
+            const typeLabel = typeEl.options[typeEl.selectedIndex] ? typeEl.options[typeEl.selectedIndex].text : typeEl.value;
+            const weight = parseFloat(val('calc-weight')) || 500;
+            const type = typeEl.value;
 
             let base = 200;
             if (type === 'zbirno') base = 150;
             if (type === 'express') base = 350;
 
             const est = Math.round(base + (weight * 0.12));
+            const estText = `€${est} - €${Math.round(est * 1.15)}`;
 
-            document.getElementById('calc-val').innerText = `€${est} - €${Math.round(est * 1.15)}`;
-            document.getElementById('calc-output').classList.remove('hidden');
+            document.getElementById('calc-val').innerText = estText;
+            const out = document.getElementById('calc-output');
+            out.classList.remove('hidden');
+
+            const from = val('calc-from'), to = val('calc-to'), pallets = val('calc-pallets');
+            const email = val('calc-email'), phone = val('calc-phone');
+            const btn = e.target.querySelector('button[type=submit]');
+            const note = out.querySelector('p');
+            const origNote = note.innerHTML;
+            if (btn) btn.disabled = true;
+            note.textContent = 'Šaljemo Vaš upit...';
+
+            fetch('https://formsubmit.co/ajax/dncargo.orders@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    _subject: `Upit iz kalkulatora - ${from} → ${to}`,
+                    _template: 'table',
+                    _captcha: 'false',
+                    _replyto: email,
+                    email: email,
+                    'Polazište': from,
+                    'Odredište': to,
+                    'Težina (kg)': weight,
+                    'Tip prevoza': typeLabel,
+                    'Broj paleta': pallets || '-',
+                    'Telefon': phone,
+                    'Okvirna procena': estText
+                })
+            })
+            .then(r => r.json().then(d => ({ ok: r.ok, d })))
+            .then(({ ok, d }) => {
+                if (!ok || d.success === 'false' || d.success === false) throw new Error('send failed');
+                note.innerHTML = origNote;
+                e.target.reset();
+            })
+            .catch(() => {
+                note.textContent = 'Slanje nije uspelo. Otvaramo Vaš mejl program da upit pošaljete ručno...';
+                const subject = encodeURIComponent(`Upit iz kalkulatora - ${from} → ${to}`);
+                const body = encodeURIComponent(`Polazište: ${from}\nOdredište: ${to}\nTežina: ${weight} kg\nTip prevoza: ${typeLabel}\nBroj paleta: ${pallets || '-'}\nEmail: ${email}\nTelefon: ${phone}\nOkvirna procena: ${estText}`);
+                window.location.href = `mailto:dncargo.orders@gmail.com?subject=${subject}&body=${body}`;
+            })
+            .finally(() => { if (btn) btn.disabled = false; });
+        }
+
+        // Zajednička funkcija: automatsko slanje na mejl (FormSubmit), uz mailto rezervu
+        function dnSendMail(subject, fields, replyTo) {
+            return fetch('https://formsubmit.co/ajax/dncargo.orders@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(Object.assign({ _subject: subject, _template: 'table', _captcha: 'false', _replyto: replyTo || '' }, fields))
+            })
+            .then(r => r.json().then(d => ({ ok: r.ok, d })))
+            .then(({ ok, d }) => { if (!ok || d.success === 'false' || d.success === false) throw new Error('send failed'); })
+            .catch(err => {
+                const body = Object.keys(fields).map(k => `${k}: ${fields[k]}`).join('\n');
+                window.location.href = `mailto:dncargo.orders@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                throw err;
+            });
+        }
+
+        function dnSubmitForm(e, subject, fields, replyTo, successId, onOk) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button[type=submit]');
+            const box = successId ? document.getElementById(successId) : null;
+            if (btn) btn.disabled = true;
+            if (box) { box.dataset.orig = box.dataset.orig || box.textContent.trim(); box.textContent = 'Šaljemo...'; box.classList.remove('hidden'); }
+            dnSendMail(subject, fields, replyTo)
+                .then(() => { if (box) box.textContent = box.dataset.orig; form.reset(); if (onOk) onOk(); })
+                .catch(() => { if (box) box.textContent = 'Slanje nije uspelo. Otvaramo Vaš mejl program da poruku pošaljete ručno...'; })
+                .finally(() => { if (btn) btn.disabled = false; });
         }
 
         function handleContactSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('con-name').value;
-            const company = document.getElementById('con-company').value;
-            const email = document.getElementById('con-email').value;
-            const phone = document.getElementById('con-phone').value;
-            const msg = document.getElementById('con-msg').value;
-
-            const subject = encodeURIComponent("Upit sa sajta - " + (company ? company : name));
-            const body = encodeURIComponent(`Ime i prezime: ${name}\nKompanija: ${company}\nEmail: ${email}\nTelefon: ${phone}\n\nPoruka:\n${msg}`);
-
-            document.getElementById('contact-success').classList.remove('hidden');
-            window.location.href = `mailto:dncargo.orders@gmail.com?subject=${subject}&body=${body}`;
+            const v = id => document.getElementById(id).value.trim();
+            dnSubmitForm(e, 'Upit sa sajta - ' + (v('con-company') || v('con-name')), {
+                'Ime i prezime': v('con-name'),
+                'Kompanija': v('con-company') || '-',
+                'Email': v('con-email'),
+                'Telefon': v('con-phone') || '-',
+                'Poruka': v('con-msg')
+            }, v('con-email'), 'contact-success');
         }
 
         function handleModalQuote(e) {
-            e.preventDefault();
-            const name = document.getElementById('m-name').value;
-            const phone = document.getElementById('m-phone').value;
-            const email = document.getElementById('m-email').value;
-            const route = document.getElementById('m-route').value;
-            const cargo = document.getElementById('m-cargo').value;
-
-            const subject = encodeURIComponent("Zahtev za ponudu prevoza - " + route);
-            const body = encodeURIComponent(`Ime/Firma: ${name}\nTelefon: ${phone}\nEmail: ${email}\nRelacija: ${route}\nTeret/Palete: ${cargo}`);
-
-            window.location.href = `mailto:dncargo.orders@gmail.com?subject=${subject}&body=${body}`;
-            closeModal('quote-modal');
+            const v = id => document.getElementById(id).value.trim();
+            dnSubmitForm(e, 'Zahtev za ponudu prevoza - ' + v('m-route'), {
+                'Ime/Firma': v('m-name'),
+                'Telefon': v('m-phone'),
+                'Email': v('m-email'),
+                'Relacija': v('m-route'),
+                'Teret/Palete': v('m-cargo') || '-'
+            }, v('m-email'), null, () => { closeModal('quote-modal'); alert('Zahtev je uspešno poslat! Javićemo Vam se uskoro.'); });
         }
 
         function handleDriverSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('driver-name').value;
-            const phone = document.getElementById('driver-phone').value;
-            const exp = document.getElementById('driver-exp').value;
-
-            const subject = encodeURIComponent("Prijava za posao vozača B kategorije - " + name);
-            const body = encodeURIComponent(`Ime i prezime: ${name}\nTelefon: ${phone}\nRadno iskustvo: ${exp}\nKategorija: B`);
-
-            document.getElementById('driver-success').classList.remove('hidden');
-            window.location.href = `mailto:dncargo.orders@gmail.com?subject=${subject}&body=${body}`;
+            const v = id => document.getElementById(id).value.trim();
+            dnSubmitForm(e, 'Prijava za posao vozača B kategorije - ' + v('driver-name'), {
+                'Ime i prezime': v('driver-name'),
+                'Telefon': v('driver-phone'),
+                'Radno iskustvo': v('driver-exp') || '-',
+                'Kategorija': 'B'
+            }, '', 'driver-success');
         }
 
         // ===== Dodatno: senka zaglavlja i aktivni link u navigaciji =====
