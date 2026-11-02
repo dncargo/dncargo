@@ -554,6 +554,13 @@
         @keyframes dn-fav-bar { from { transform: scaleX(1); } to { transform: scaleX(0); } }
         @keyframes dn-fav-pulse { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.18) rotate(12deg); } }
         @media (prefers-reduced-motion: reduce) { #dn-fav { transition: opacity .2s ease; transform: translate(-50%, 0); } #dn-fav .dn-fav-main i { animation: none; } }
+
+        /* Ikona menija privlači pažnju: svetli obruč + lagano njihanje */
+        #mobile-toggle { border-radius: 12px; }
+        #mobile-toggle.dn-attn { color: #F59E0B !important; animation: dn-menu-shake 1.25s ease-in-out 3, dn-menu-glow 1.25s ease-out 3; }
+        @keyframes dn-menu-shake { 0%, 80%, 100% { transform: none; } 12% { transform: rotate(-12deg) scale(1.14); } 28% { transform: rotate(10deg) scale(1.14); } 44% { transform: rotate(-6deg) scale(1.08); } 60% { transform: rotate(3deg) scale(1.04); } }
+        @keyframes dn-menu-glow { 0% { box-shadow: 0 0 0 0 rgba(245,158,11,.75); } 70%, 100% { box-shadow: 0 0 0 16px rgba(245,158,11,0); } }
+        @media (prefers-reduced-motion: reduce) { #mobile-toggle.dn-attn { animation: none; box-shadow: 0 0 0 3px rgba(245,158,11,.6); } }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-amber-500 selection:text-white">
@@ -2456,6 +2463,38 @@
                 tries++;
                 if (!document.getElementById('dn-splash') || tries > 60) { clearInterval(wait); setTimeout(open, 900); }
             }, 250);
+        })();
+
+        // ===== Ikona menija: animacija pri otvaranju sajta, kad je meni neaktivan i pri povratku na vrh =====
+        (function () {
+            var btn = document.getElementById('mobile-toggle'); if (!btn) return;
+            var used = false, last = 0, count = 0, MAX = 6;
+            try { used = sessionStorage.getItem('dnMenuUsed') === '1' || (+localStorage.getItem('dnMenuOpens') || 0) >= 3; } catch (e) {}
+            function pulse() {
+                var now = Date.now();
+                if (used || document.hidden || count >= MAX || now - last < 6000) return;
+                last = now; count++;
+                btn.classList.remove('dn-attn'); void btn.offsetWidth; btn.classList.add('dn-attn');
+                setTimeout(function () { btn.classList.remove('dn-attn'); }, 3900);
+            }
+            btn.addEventListener('click', function () {      // meni je otkriven – prestaje
+                used = true; btn.classList.remove('dn-attn');
+                try { sessionStorage.setItem('dnMenuUsed', '1'); localStorage.setItem('dnMenuOpens', String((+localStorage.getItem('dnMenuOpens') || 0) + 1)); } catch (e) {}
+            });
+            // 1) pri otvaranju sajta (posle uvodnog ekrana)
+            var tries = 0, wait = setInterval(function () {
+                tries++;
+                if (!document.getElementById('dn-splash') || tries > 60) { clearInterval(wait); setTimeout(pulse, 700); }
+            }, 250);
+            // 2) meni neaktivan: povremeno podseti
+            setInterval(pulse, 20000);
+            // 3) povratak na vrh posle skrolovanja nadole
+            var down = false;
+            window.addEventListener('scroll', function () {
+                var y = window.scrollY;
+                if (y > 600) down = true;
+                else if (y < 80 && down) { down = false; setTimeout(pulse, 400); }
+            }, { passive: true });
         })();
     </script>
 </body>
