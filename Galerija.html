@@ -61,6 +61,12 @@
         .g-hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:6px; background: repeating-linear-gradient(90deg, #F59E0B 0 36px, transparent 36px 64px); }
         .road { display:block; width:72px; height:5px; margin: 16px auto 0; border-radius:3px; background: repeating-linear-gradient(90deg, #F59E0B 0 14px, transparent 14px 20px); }
 
+        /* Izbor jezika */
+        .dn-lang { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 9999px; overflow: hidden; background: #fff; }
+        .dn-lang button { padding: 6px 14px; font: 700 12px 'Poppins', sans-serif; letter-spacing: .04em; color: #0B132B; background: transparent; border: 0; cursor: pointer; transition: background .2s, color .2s; }
+        .dn-lang button:hover { background: #FEF3C7; }
+        .dn-lang button.active { background: #F59E0B; color: #0B132B; }
+        
         /* Mreža */
         .g-grid { columns: 1; column-gap: 1.25rem; }
         @media (min-width: 640px) { .g-grid { columns: 2; } }
@@ -127,6 +133,14 @@
                 <div class="flex items-center justify-between border-b pb-4 mb-6">
                     <img src="dn-znak.png" alt="DN Cargo" class="h-12 w-auto">
                     <button id="close-drawer" class="text-slate-400 hover:text-navy-900 text-2xl" aria-label="Zatvori meni"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="flex items-center gap-3 mb-5" data-no-i18n>
+                    <i class="fa-solid fa-globe text-amber-500 text-lg" aria-hidden="true"></i>
+                    <div class="dn-lang" role="group" aria-label="Language">
+                        <button type="button" data-setlang="sr">SR</button>
+                        <button type="button" data-setlang="en">EN</button>
+                        <button type="button" data-setlang="de">DE</button>
+                    </div>
                 </div>
                 <nav class="flex flex-col gap-4 text-slate-800 font-semibold text-sm">
                     <a href="index.html#pocetna" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">Početna</a>
