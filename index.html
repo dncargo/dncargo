@@ -380,6 +380,8 @@
         @keyframes dn-splash-letter { to { opacity: 1; transform: none; } }
         .dn-splash-sub { margin-top: 12px; font: 500 13px 'Poppins', sans-serif; color: #cbd5e1; letter-spacing: .08em; opacity: 0; animation: dn-splash-fade .6s ease 1.3s forwards; }
         @keyframes dn-splash-fade { to { opacity: 1; } }
+        .dn-splash-phone { margin-top: 10px; font: 700 18px 'Poppins', sans-serif; color: #F59E0B; letter-spacing: .06em; opacity: 0; animation: dn-splash-fade .6s ease 1.5s forwards; }
+        .dn-splash-phone i { margin-right: 8px; font-size: 15px; }
         .dn-splash-road { position: relative; height: 34px; margin-top: 30px; border-bottom: 2px dashed rgba(245,158,11,.55); overflow: hidden; }
         .dn-splash-road i { position: absolute; left: 0; bottom: 2px; font-size: 28px; color: #F59E0B; filter: drop-shadow(0 4px 8px rgba(0,0,0,.5)); animation: dn-splash-drive 2.2s cubic-bezier(.45,.05,.4,1) .4s forwards; transform: translateX(-50px); }
         @keyframes dn-splash-drive { to { transform: translateX(min(420px, 86vw)); } }
@@ -387,7 +389,7 @@
         .dn-splash-bar span { display: block; height: 100%; width: 0; border-radius: 9999px; background: linear-gradient(90deg,#F59E0B,#F97316); animation: dn-splash-load 2.3s ease-in-out .3s forwards; }
         @keyframes dn-splash-load { to { width: 100%; } }
         @media (prefers-reduced-motion: reduce) {
-            .dn-splash-coin, .dn-splash-title span, .dn-splash-sub { animation-duration: .01ms !important; animation-delay: 0s !important; }
+            .dn-splash-coin, .dn-splash-title span, .dn-splash-sub, .dn-splash-phone { animation-duration: .01ms !important; animation-delay: 0s !important; }
             .dn-splash-road i { animation: none; transform: translateX(40%); }
         }
 
@@ -576,6 +578,7 @@
             <div class="dn-splash-coin"><img src="dn-znak.png" alt=""></div>
             <div class="dn-splash-title"><span>D</span><span>N</span><span class="sp"></span><span>C</span><span>A</span><span>R</span><span>G</span><span>O</span></div>
             <div class="dn-splash-sub">Kombi prevoz tereta &bull; Vranje</div>
+            <div class="dn-splash-phone"><i class="fa-solid fa-phone"></i>063 / 407-717</div>
             <div class="dn-splash-road"><i class="fa-solid fa-truck-fast"></i></div>
             <div class="dn-splash-bar"><span></span></div>
         </div>
