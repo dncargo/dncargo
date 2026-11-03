@@ -2,7 +2,7 @@
 <html lang="sr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; frame-src https://www.google.com; connect-src 'self' https://formsubmit.co https://api.counterapi.dev">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; frame-src https://www.google.com; connect-src 'self' https://api.web3forms.com https://api.counterapi.dev">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DN Cargo Vranje | Pouzdan Logistički Partner - Kombi Cerada do 3.5t</title>
@@ -1936,16 +1936,23 @@
             Object.keys(fields).forEach(k => { if (typeof fields[k] === 'string') fields[k] = fields[k].slice(0, 2000); });
             subject = String(subject).slice(0, 200);
             const ctrl = new AbortController();
-            const timer = setTimeout(() => ctrl.abort(), 6000);
-            return fetch('https://formsubmit.co/ajax/dncargo.orders@gmail.com', {
+            const timer = setTimeout(() => ctrl.abort(), 10000);
+            const payload = Object.assign({
+                access_key: '0a712fdb-bf5d-4fd4-af81-4032427faa08',
+                subject: subject,
+                from_name: 'DN Cargo sajt',
+                botcheck: ''
+            }, fields);
+            if (replyTo) payload.email = replyTo;
+            return fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 signal: ctrl.signal,
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify(Object.assign({ _subject: subject, _template: 'table', _captcha: 'false', _replyto: replyTo || '' }, fields))
+                body: JSON.stringify(payload)
             })
             .finally(() => clearTimeout(timer))
             .then(r => r.json().then(d => ({ ok: r.ok, d })))
-            .then(({ ok, d }) => { if (!ok || d.success === 'false' || d.success === false) throw new Error('send failed'); })
+            .then(({ ok, d }) => { if (!ok || d.success !== true) throw new Error('send failed'); })
             .catch(err => {
                 if (err && err.message === 'throttle') throw err;
                 const body = Object.keys(fields).map(k => `${k}: ${fields[k]}`).join('\n');
