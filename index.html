@@ -1285,9 +1285,16 @@
                         </form>
 
                         <div id="calc-output" class="hidden mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
-                            <span class="text-xs font-bold text-emerald-800 uppercase tracking-wider block">Okvirna Procena Troškova:</span>
-                            <div class="text-3xl font-black text-emerald-700 my-1 font-heading" id="calc-val">€0</div>
-                            <p class="text-xs text-slate-600 mt-1">Vaš upit je uspešno prosleđen našem dispečeru! Javićemo se ubrzo sa tačnom ponudom.</p>
+                            <p class="text-sm text-slate-600">
+                                <span class="block text-emerald-700 text-3xl mb-1"><i class="fa-solid fa-circle-check"></i></span>
+                                <span class="block text-base font-extrabold text-emerald-800 font-heading">Vaš upit je uspešno poslat!</span>
+                                <span class="block mt-1">Javićemo Vam se u najkraćem roku sa tačnom ponudom.</span>
+                                <span class="block mt-3 text-xs text-slate-500">Treba Vam odgovor odmah? Kontaktirajte nas:</span>
+                                <span class="flex flex-col sm:flex-row gap-2 justify-center mt-2">
+                                    <a href="viber://chat?number=%2B38163407717" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-violet-600 text-white font-bold text-sm"><i class="fa-brands fa-viber"></i> Viber poruka</a>
+                                    <a href="tel:063407717" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-amber-500 text-navy-950 font-bold text-sm"><i class="fa-solid fa-phone"></i> 063 / 407-717</a>
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1896,8 +1903,7 @@
             const est = Math.round(base + (weight * 0.12));
             const estText = `€${est} - €${Math.round(est * 1.15)}`;
 
-            // Procena se prikazuje odmah, slanje mejla ide u pozadini
-            document.getElementById('calc-val').innerText = estText;
+            // Poruka se prikazuje odmah, slanje mejla ide u pozadini (procena ide samo u mejl dispečeru)
             const out = document.getElementById('calc-output');
             out.classList.remove('hidden');
 
