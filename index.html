@@ -260,6 +260,15 @@
         body footer { position: relative; }
         body footer::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, #F59E0B, #F97316, #F59E0B); }
 
+
+        /* Foto galerija: ikona sa malim foto aparatom koji se blago njiše i "blicne" */
+        .dn-gal-ico { position: relative; display: inline-flex; width: 2rem; justify-content: center; }
+        .dn-gal-cam { position: absolute; right: -9px; bottom: -7px; width: 20px; height: 20px; border-radius: 9999px; background: #0B132B; color: #F59E0B; border: 2px solid #fff; font-size: 9px; display: flex; align-items: center; justify-content: center; transform-origin: 50% 70%; animation: dn-cam-wiggle 3.6s ease-in-out infinite; }
+        .dn-gal-cam::after { content: ""; position: absolute; inset: -2px; border-radius: 9999px; background: rgba(245,158,11,.55); opacity: 0; animation: dn-cam-flash 3.6s ease-out infinite; }
+        @keyframes dn-cam-wiggle { 0%, 60%, 100% { transform: rotate(0) scale(1); } 66% { transform: rotate(-14deg) scale(1.12); } 72% { transform: rotate(12deg) scale(1.12); } 78% { transform: rotate(-6deg) scale(1.05); } 84% { transform: rotate(0) scale(1); } }
+        @keyframes dn-cam-flash { 0%, 80% { opacity: 0; transform: scale(1); } 84% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(2.1); } }
+        @media (prefers-reduced-motion: reduce) { .dn-gal-cam, .dn-gal-cam::after { animation: none; } }
+
         /* Mobilni meni i modali */
         #mobile-drawer { backdrop-filter: blur(4px); }
         #drawer-panel .drawer-link { transition: padding-left .2s ease, color .2s ease; }
@@ -739,6 +748,11 @@
                     <a href="Rute.html" class="flex items-center gap-3 bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-400 rounded-xl px-4 py-3 transition mt-3">
                         <i class="fa-solid fa-route text-2xl text-amber-500"></i>
                         <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Rute (Evropa i Srbija)</span><span class="block text-[11px] text-slate-500">Destinacije i tranzitna vremena</span></span>
+                        <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                    </a>
+                    <a href="Galerija.html" class="flex items-center gap-3 bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-400 rounded-xl px-4 py-3 transition mt-3">
+                        <span class="dn-gal-ico"><i class="fa-solid fa-images text-2xl text-amber-500"></i><span class="dn-gal-cam" aria-hidden="true"><i class="fa-solid fa-camera"></i></span></span>
+                        <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Foto galerija</span><span class="block text-[11px] text-slate-500">Naši kombiji na putu</span></span>
                         <i class="fa-solid fa-chevron-right text-slate-400"></i>
                     </a>
                 </div>

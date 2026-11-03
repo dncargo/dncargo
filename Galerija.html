@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="sr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foto Galerija | DN Cargo Vranje - Kombi Prevoz Tereta</title>
+    <meta name="description" content="Foto galerija DN Cargo Vranje - fotografije naših kombi vozila na putu kroz Srbiju i Evropu: Madrid, Lisabon, Nemačka, Grčka i mnoge druge destinacije.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://www.dncargo.sajt.net/Galerija.html">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="dn-znak.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="sr_RS">
+    <meta property="og:site_name" content="DN Cargo Vranje">
+    <meta property="og:title" content="Foto Galerija | DN Cargo Vranje">
+    <meta property="og:description" content="Pogledajte naše kombije na putu kroz Evropu.">
+    <meta property="og:url" content="https://www.dncargo.sajt.net/Galerija.html">
+    <meta property="og:image" content="https://www.dncargo.sajt.net/galerija-01-tri-kombija-nebo.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {
+            colors: {
+                navy: { 800: '#1E293B', 900: '#0F172A', 950: '#0B132B' },
+                amber: { DEFAULT: '#F59E0B', hover: '#D97706', light: '#FEF3C7' }
+            },
+            fontFamily: { montserrat: ['Montserrat', 'sans-serif'], poppins: ['Poppins', 'sans-serif'] }
+        } } }
+    </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; color: #334155; background-color: #F8FAFC; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Montserrat', sans-serif; }
+        body ::selection { background: #F59E0B; color: #0B132B; }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #0F172A; }
+        ::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 4px; }
+
+        #header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 2px solid rgba(245,158,11,.55); }
+        #mobile-drawer { backdrop-filter: blur(4px); }
+        #drawer-panel .drawer-link { transition: padding-left .2s ease, color .2s ease; }
+        #drawer-panel .drawer-link:hover { padding-left: 8px; }
+        #drawer-panel .drawer-link.is-current { color: #F59E0B; }
+
+
+        /* Foto galerija: ikona sa malim foto aparatom koji se blago njiše i "blicne" */
+        .dn-gal-ico { position: relative; display: inline-flex; width: 2rem; justify-content: center; }
+        .dn-gal-cam { position: absolute; right: -9px; bottom: -7px; width: 20px; height: 20px; border-radius: 9999px; background: #0B132B; color: #F59E0B; border: 2px solid #fff; font-size: 9px; display: flex; align-items: center; justify-content: center; transform-origin: 50% 70%; animation: dn-cam-wiggle 3.6s ease-in-out infinite; }
+        .dn-gal-cam::after { content: ""; position: absolute; inset: -2px; border-radius: 9999px; background: rgba(245,158,11,.55); opacity: 0; animation: dn-cam-flash 3.6s ease-out infinite; }
+        @keyframes dn-cam-wiggle { 0%, 60%, 100% { transform: rotate(0) scale(1); } 66% { transform: rotate(-14deg) scale(1.12); } 72% { transform: rotate(12deg) scale(1.12); } 78% { transform: rotate(-6deg) scale(1.05); } 84% { transform: rotate(0) scale(1); } }
+        @keyframes dn-cam-flash { 0%, 80% { opacity: 0; transform: scale(1); } 84% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(2.1); } }
+        @media (prefers-reduced-motion: reduce) { .dn-gal-cam, .dn-gal-cam::after { animation: none; } }
+
+        /* Naslov */
+        .g-hero { background-image: linear-gradient(135deg, rgba(15,23,42,.96) 0%, rgba(15,23,42,.86) 100%), url('galerija-01-tri-kombija-nebo.jpg'); background-size: cover; background-position: center; position: relative; }
+        .g-hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:6px; background: repeating-linear-gradient(90deg, #F59E0B 0 36px, transparent 36px 64px); }
+        .road { display:block; width:72px; height:5px; margin: 16px auto 0; border-radius:3px; background: repeating-linear-gradient(90deg, #F59E0B 0 14px, transparent 14px 20px); }
+
+        /* Mreža */
+        .g-grid { columns: 1; column-gap: 1.25rem; }
+        @media (min-width: 640px) { .g-grid { columns: 2; } }
+        @media (min-width: 1024px) { .g-grid { columns: 3; } }
+        .g-item { break-inside: avoid; margin: 0 0 1.25rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 16px -10px rgba(15,23,42,.25); transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+        .g-item:hover { transform: translateY(-5px); border-color: rgba(245,158,11,.7); box-shadow: 0 22px 40px -16px rgba(15,23,42,.35); }
+        .g-open { position: relative; display: block; width: 100%; padding: 0; border: 0; background: #0F172A; cursor: zoom-in; overflow: hidden; }
+        .g-open img { display: block; width: 100%; height: auto; transition: transform .7s ease; }
+        .g-item:hover .g-open img { transform: scale(1.05); }
+        .g-zoom { position: absolute; right: 12px; bottom: 12px; width: 38px; height: 38px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background: rgba(11,19,43,.78); color: #F59E0B; opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; }
+        .g-open:hover .g-zoom, .g-open:focus-visible .g-zoom { opacity: 1; transform: none; }
+        .g-open:focus-visible { outline: 3px solid #F59E0B; outline-offset: -3px; }
+        .g-item figcaption { padding: 14px 16px 16px; border-top: 3px solid #F59E0B; }
+        .g-item h3 { font-weight: 800; font-size: 15px; color: #0F172A; margin-bottom: 4px; }
+        .g-item p { font-size: 13px; line-height: 1.5; color: #475569; }
+
+        /* Lightbox */
+        #lb { position: fixed; inset: 0; z-index: 60; display: none; flex-direction: column; align-items: center; justify-content: center; background: rgba(5,10,24,.95); padding: 16px; }
+        #lb.open { display: flex; }
+        #lb img { max-width: 100%; max-height: calc(100vh - 150px); object-fit: contain; border-radius: 10px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8); }
+        #lb .lb-cap { margin-top: 14px; max-width: 760px; text-align: center; color: #e2e8f0; }
+        #lb .lb-cap strong { display: block; color: #F59E0B; font-family: 'Montserrat', sans-serif; font-size: 15px; }
+        #lb .lb-cap span { font-size: 13px; color: #cbd5e1; }
+        #lb button { position: absolute; border: 0; cursor: pointer; width: 46px; height: 46px; border-radius: 9999px; background: rgba(255,255,255,.1); color: #fff; font-size: 18px; transition: background .2s ease, color .2s ease; }
+        #lb button:hover { background: #F59E0B; color: #0B132B; }
+        #lb .lb-x { top: 14px; right: 14px; } #lb .lb-p { left: 12px; top: 50%; } #lb .lb-n { right: 12px; top: 50%; }
+        #lb .lb-c { position: absolute; top: 24px; left: 18px; color: #94a3b8; font-size: 13px; font-weight: 600; }
+        @media (max-width: 640px) { #lb .lb-p, #lb .lb-n { top: auto; bottom: 14px; } #lb .lb-p { left: 14px; } #lb .lb-n { right: 14px; } }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-amber-500 selection:text-white">
+
+    <!-- Gornja traka -->
+    <div class="bg-navy-950 text-slate-300 text-xs py-2.5 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 lg:gap-6">
+                <a href="tel:063407717" class="hover:text-amber-500 transition flex items-center gap-2 font-medium"><i class="fa-solid fa-phone text-amber-500"></i><span>063 / 407-717</span></a>
+                <a href="viber://chat?number=%2B38163407717" target="_blank" rel="noopener" class="hover:text-emerald-400 transition flex items-center gap-2 font-medium text-emerald-400"><i class="fa-brands fa-viber"></i><span>Viber Kontakt</span></a>
+                <a href="mailto:dncargo.orders@gmail.com" class="hover:text-amber-500 transition flex items-center gap-2 font-medium"><i class="fa-solid fa-envelope text-amber-500"></i><span>dncargo.orders@gmail.com</span></a>
+            </div>
+            <span class="bg-slate-800/80 px-2.5 py-1 rounded text-[11px] font-semibold text-amber-400 border border-amber-500/20 flex items-center gap-1.5"><i class="fa-solid fa-award"></i> PIB: 113807226 | MB: 67098803</span>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-navy-950 shadow-md" id="header" style="background-image: linear-gradient(rgba(11,19,43,.92), rgba(11,19,43,.92));">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="dn-znak.png" alt="DN Cargo" class="h-11 w-auto">
+                    <span class="text-xl font-black text-white font-heading">DN <span class="text-amber-500">CARGO</span></span>
+                </a>
+                <div class="flex items-center gap-3">
+                    <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-slate-200 hover:text-amber-500 text-sm font-semibold transition"><i class="fa-solid fa-arrow-left"></i> Nazad na početnu</a>
+                    <button id="mobile-toggle" class="text-white hover:text-amber-500 text-2xl p-2 focus:outline-none" aria-label="Meni"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Desni bočni meni -->
+    <div id="mobile-drawer" class="fixed inset-0 bg-navy-950/80 z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex justify-end">
+        <div id="drawer-panel" class="w-4/5 max-w-xs bg-white h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300">
+            <div>
+                <div class="flex items-center justify-between border-b pb-4 mb-6">
+                    <img src="dn-znak.png" alt="DN Cargo" class="h-12 w-auto">
+                    <button id="close-drawer" class="text-slate-400 hover:text-navy-900 text-2xl" aria-label="Zatvori meni"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <nav class="flex flex-col gap-4 text-slate-800 font-semibold text-sm">
+                    <a href="index.html#pocetna" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">Početna</a>
+                    <a href="index.html#o-nama" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">O Nama</a>
+                    <a href="index.html#usluge" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">Usluge</a>
+                    <a href="index.html#flota" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">Vozni Park (18 Kombija)</a>
+                    <a href="index.html#kalkulator" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">Kalkulativni Upit</a>
+                    <a href="index.html#karijera" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100 text-orange-600 font-bold">Zaposlenje Vozača B Kat.</a>
+                    <a href="index.html#lokacija" class="drawer-link hover:text-amber-500 py-2 border-b border-slate-100">Lokacija na Mapi</a>
+                    <a href="index.html#kontakt" class="drawer-link hover:text-amber-500 py-2">Kontakt</a>
+                </nav>
+                <div class="mt-6 pt-5 border-t border-slate-100 space-y-3">
+                    <a href="Galerija.html" class="flex items-center gap-3 bg-amber-50 border border-amber-400 rounded-xl px-4 py-3">
+                        <span class="dn-gal-ico"><i class="fa-solid fa-images text-2xl text-amber-500"></i><span class="dn-gal-cam" aria-hidden="true"><i class="fa-solid fa-camera"></i></span></span>
+                        <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Foto galerija</span><span class="block text-[11px] text-slate-500">Naši kombiji na putu</span></span>
+                        <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                    </a>
+                    <a href="FAQ.html" class="flex items-center gap-3 bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-400 rounded-xl px-4 py-3 transition">
+                        <i class="fa-solid fa-circle-question text-2xl text-amber-500"></i>
+                        <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Česta pitanja (FAQ)</span><span class="block text-[11px] text-slate-500">Odgovori na najčešća pitanja</span></span>
+                        <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                    </a>
+                    <a href="Rute.html" class="flex items-center gap-3 bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-400 rounded-xl px-4 py-3 transition">
+                        <i class="fa-solid fa-route text-2xl text-amber-500"></i>
+                        <span class="flex-1 leading-tight"><span class="block text-sm font-bold text-navy-900">Rute (Evropa i Srbija)</span><span class="block text-[11px] text-slate-500">Destinacije i tranzitna vremena</span></span>
+                        <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="space-y-3 pt-6 border-t border-slate-100 mt-6">
+                <a href="index.html#kontakt" class="w-full bg-amber-500 hover:bg-amber-hover text-white py-3.5 rounded-xl font-bold text-center block shadow-md">Zatražite Ponudu</a>
+                <div class="text-xs text-slate-500 text-center space-y-1">
+                    <p><i class="fa-solid fa-phone text-amber-500 mr-1"></i> <a href="tel:063407717">063 / 407-717</a></p>
+                    <p><i class="fa-brands fa-viber text-emerald-600 mr-1"></i> <a href="viber://chat?number=%2B38163407717">Viber Chat</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Naslov -->
+    <section class="g-hero py-16 sm:py-20 text-center text-white">
+        <div class="max-w-3xl mx-auto px-4">
+            <span class="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5"><i class="fa-solid fa-camera"></i> Foto galerija</span>
+            <h1 class="text-3xl sm:text-5xl font-black leading-tight">DN Cargo <span class="text-amber-500">na putu</span></h1>
+            <span class="road"></span>
+            <p class="mt-6 text-slate-300 text-sm sm:text-base leading-relaxed">Od Vranja do Lisabona – nekoliko trenutaka sa naših tura kroz Srbiju i Evropu. Kliknite na sliku da je uvećate.</p>
+        </div>
+    </section>
+
+    <!-- Galerija -->
+    <main class="py-14 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="g-grid" id="g-grid">
+            <figure class="g-item" data-i="0">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Naša flota na okupu">
+                    <img src="galerija-01-tri-kombija-nebo.jpg" alt="Tri DN Cargo kombija parkirana u nizu pod plavim nebom" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Naša flota na okupu</h3>
+                    <p>Tri kombija u nizu pod vedrim nebom – spremni za novu turu.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="1">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Madrid, Španija">
+                    <img src="galerija-02-madrid-metropolitano.jpg" alt="DN Cargo kombi ispred stadiona Metropolitano u Madridu" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Madrid, Španija</h3>
+                    <p>Pauza ispred stadiona Metropolitano. Španija nam je redovna destinacija.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="2">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Lisabon, Portugal">
+                    <img src="galerija-03-lisabon-sporting.jpg" alt="DN Cargo kombi ispred šarene zgrade Sporting kluba u Lisabonu" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Lisabon, Portugal</h3>
+                    <p>Stigli smo i do krajnjeg zapada Evrope – ispred šarene zgrade u Lisabonu.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="3">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Sachsenheim, Nemačka">
+                    <img src="galerija-04-porsche-sachsenheim.jpg" alt="DN Cargo kombi ispred Porsche centralnog magacina rezervnih delova u Sachsenheimu" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Sachsenheim, Nemačka</h3>
+                    <p>Isporuka rezervnih delova – kod Porsche centralnog magacina rezervnih delova.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="4">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Krf, Grčka">
+                    <img src="galerija-05-krf-grcka.jpg" alt="DN Cargo kombi parkiran u ulici u gradu Krf u Grčkoj" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Krf, Grčka</h3>
+                    <p>Dostava i na ostrvo – kombi u uskoj ulici u gradu Krf.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="5">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Utovar u magacinu">
+                    <img src="galerija-06-skladiste-action.jpg" alt="DN Cargo kombi kod rampe velikog magacina pored Action kamiona" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Utovar u magacinu</h3>
+                    <p>Tačno na rampi, na vreme – magacinski kompleks sa brojevima rampi.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="6">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Na utovarnoj rampi">
+                    <img src="galerija-07-utovarna-rampa.jpg" alt="DN Cargo kombi priključen na utovarnu rampu broj 140" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Na utovarnoj rampi</h3>
+                    <p>Utovar i istovar paleta direktno sa rampe, brzo i bezbedno.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="7">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Susret na parkingu">
+                    <img src="galerija-08-monster-truck.jpg" alt="DN Cargo kombi pored monster trucka na prikolici" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Susret na parkingu</h3>
+                    <p>Na putu nas čekaju i neobični susreti – ovog puta monster truck na prikolici.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="8">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Kratko sipanje goriva">
+                    <img src="galerija-09-benzinska-stanica.jpg" alt="Dva DN Cargo kombija na benzinskoj stanici u Španiji" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Kratko sipanje goriva</h3>
+                    <p>Dva kombija na pumpi u Španiji – gorivo, kafa i dalje na put.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="9">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Dvojica na odmoru">
+                    <img src="galerija-10-dva-kombija-parking.jpg" alt="Dva DN Cargo kombija na parkingu pored auto-puta" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Dvojica na odmoru</h3>
+                    <p>Pauza na odmorištu pored auto-puta, vozači se odmaraju pre nastavka puta.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="10">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Kolona na odmorištu">
+                    <img src="galerija-11-kolona-kombija.jpg" alt="Kolona DN Cargo kombija na parkingu odmorišta" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Kolona na odmorištu</h3>
+                    <p>Naši kombiji često putuju zajedno – ovde na odmorištu u Evropi.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="11">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Noćna smena">
+                    <img src="galerija-12-tri-kombija-noc.jpg" alt="Tri DN Cargo kombija parkirana noću ispred velikog trgovačkog objekta" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Noćna smena</h3>
+                    <p>Posao ne staje kad padne mrak – tri kombija kod trgovačkog centra.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="12">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Noćna vožnja">
+                    <img src="galerija-13-noc-dva-kombija.jpg" alt="Dva DN Cargo kombija jedan naspram drugog u noći" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Noćna vožnja</h3>
+                    <p>Vozimo i noću, kad je put prazan, da teret stigne ranije.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="13">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: Zora na parkingu">
+                    <img src="galerija-14-sumrak-dva-kombija.jpg" alt="Dva DN Cargo kombija u sumrak" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>Zora na parkingu</h3>
+                    <p>Rano jutro i spremni smo za sledeći utovar.</p>
+                </figcaption>
+            </figure>
+            <figure class="g-item" data-i="14">
+                <button type="button" class="g-open" aria-label="Uvećaj sliku: I po oblačnom vremenu">
+                    <img src="galerija-15-nevreme-parking.jpg" alt="Dva DN Cargo kombija na parkingu pod oblačnim nebom" loading="lazy" decoding="async">
+                    <span class="g-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </button>
+                <figcaption>
+                    <h3>I po oblačnom vremenu</h3>
+                    <p>Bez obzira na vreme, teret stiže na odredište.</p>
+                </figcaption>
+            </figure>
+            </div>
+
+            <div class="mt-10 bg-navy-950 text-white rounded-2xl p-8 sm:p-10 text-center border border-amber-500/30">
+                <h2 class="text-xl sm:text-2xl font-black">Treba vam prevoz tereta?</h2>
+                <p class="mt-2 text-slate-300 text-sm">Pozovite nas ili pošaljite upit – odgovaramo brzo.</p>
+                <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="tel:063407717" class="bg-amber-500 hover:bg-amber-hover text-white font-bold px-7 py-3 rounded-xl transition inline-flex items-center justify-center gap-2"><i class="fa-solid fa-phone"></i> 063 / 407-717</a>
+                    <a href="index.html#kontakt" class="border border-slate-600 hover:border-amber-500 hover:text-amber-500 font-bold px-7 py-3 rounded-xl transition inline-flex items-center justify-center gap-2"><i class="fa-solid fa-paper-plane"></i> Zatražite ponudu</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-navy-950 text-slate-400 pt-10 pb-8 border-t-2 border-amber-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
+            <p class="text-white font-black text-lg font-heading">DN <span class="text-amber-500">CARGO</span></p>
+            <p>Danijel Nedeljković PR Kombi prevoz tereta DN Cargo Vranje</p>
+            <p class="text-amber-400 font-semibold">PIB: 113807226 | MB: 67098803</p>
+            <p><a href="index.html" class="hover:text-amber-500 transition">Početna</a> &bull; <a href="FAQ.html" class="hover:text-amber-500 transition">FAQ</a> &bull; <a href="Rute.html" class="hover:text-amber-500 transition">Rute</a></p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lb" role="dialog" aria-modal="true" aria-label="Uvećana fotografija">
+        <span class="lb-c" id="lb-c"></span>
+        <button type="button" class="lb-x" id="lb-x" aria-label="Zatvori"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" class="lb-p" id="lb-p" aria-label="Prethodna slika"><i class="fa-solid fa-chevron-left"></i></button>
+        <button type="button" class="lb-n" id="lb-n" aria-label="Sledeća slika"><i class="fa-solid fa-chevron-right"></i></button>
+        <img id="lb-img" src="" alt="">
+        <div class="lb-cap"><strong id="lb-t"></strong><span id="lb-d"></span></div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script>
+    (function () {
+        // ----- Desni bočni meni -----
+        var drawer = document.getElementById('mobile-drawer'), panel = document.getElementById('drawer-panel');
+        function openDrawer() { drawer.classList.remove('opacity-0', 'pointer-events-none'); panel.classList.remove('translate-x-full'); }
+        function closeDrawer() { drawer.classList.add('opacity-0', 'pointer-events-none'); panel.classList.add('translate-x-full'); }
+        document.getElementById('mobile-toggle').addEventListener('click', openDrawer);
+        document.getElementById('close-drawer').addEventListener('click', closeDrawer);
+        drawer.addEventListener('click', function (e) { if (e.target === drawer) closeDrawer(); });
+
+        // ----- Lightbox -----
+        var items = Array.prototype.slice.call(document.querySelectorAll('.g-item'));
+        var lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cur = 0, lastFocus = null;
+        function show(i) {
+            cur = (i + items.length) % items.length;
+            var it = items[cur], im = it.querySelector('img');
+            img.src = im.getAttribute('src'); img.alt = im.alt;
+            document.getElementById('lb-t').textContent = it.querySelector('h3').textContent;
+            document.getElementById('lb-d').textContent = it.querySelector('p').textContent;
+            document.getElementById('lb-c').textContent = (cur + 1) + ' / ' + items.length;
+        }
+        function open(i) { lastFocus = document.activeElement; show(i); lb.classList.add('open'); document.documentElement.style.overflow = 'hidden'; document.getElementById('lb-x').focus(); }
+        function close() { lb.classList.remove('open'); document.documentElement.style.overflow = ''; img.src = ''; if (lastFocus) lastFocus.focus(); }
+        items.forEach(function (it, i) { it.querySelector('.g-open').addEventListener('click', function () { open(i); }); });
+        document.getElementById('lb-x').addEventListener('click', close);
+        document.getElementById('lb-p').addEventListener('click', function () { show(cur - 1); });
+        document.getElementById('lb-n').addEventListener('click', function () { show(cur + 1); });
+        lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { if (lb.classList.contains('open')) close(); else closeDrawer(); }
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'ArrowLeft') show(cur - 1);
+            if (e.key === 'ArrowRight') show(cur + 1);
+        });
+        // prevlačenje prstom na telefonu
+        var sx = null;
+        lb.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+        lb.addEventListener('touchend', function (e) {
+            if (sx === null) return;
+            var dx = e.changedTouches[0].clientX - sx; sx = null;
+            if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+        });
+    })();
+    </script>
+</body>
+</html>
