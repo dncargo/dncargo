@@ -2,13 +2,15 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redovne kombi rute | DN Cargo Vranje</title>
     <meta name="description" content="Redovne kombi rute i transport robe ka Nemačkoj, Austriji, Italiji i regionu: tranzitna vremena, destinacije i direktna dostava sa 18 kombi vozila do 3,5 t.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0B132B">
     <link rel="canonical" href="https://www.dncargo.sajt.net/Rute.html">
-    <link rel="icon" href="3120.jpg">
+    <link rel="icon" href="dn-znak.png">
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,5 +181,27 @@
         window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
     }
     </script>
+<script>
+/* Favicon: znak na tamnoplavoj podlozi sa zlatnim obodom (kao okrugli logo), da se vidi i na svetloj traci pregledača */
+(function () {
+    var link = document.querySelector('link[rel="icon"]');
+    if (!link) return;
+    var img = new Image();
+    img.onload = function () {
+        try {
+            var c = document.createElement('canvas'); c.width = c.height = 128;
+            var x = c.getContext('2d');
+            x.beginPath(); x.arc(64, 64, 62, 0, Math.PI * 2); x.fillStyle = '#0B132B'; x.fill();
+            x.lineWidth = 8; x.strokeStyle = '#F59E0B'; x.stroke();
+            var r = Math.min(76 / img.width, 76 / img.height);
+            var w = img.width * r, h = img.height * r;
+            x.drawImage(img, 64 - w / 2, 64 - h / 2, w, h);
+            link.type = 'image/png';
+            link.href = c.toDataURL('image/png');
+        } catch (e) {}
+    };
+    img.src = link.getAttribute('href');
+})();
+</script>
 </body>
 </html>

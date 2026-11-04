@@ -192,5 +192,27 @@
         window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
     }
     </script>
+<script>
+/* Favicon: znak na tamnoplavoj podlozi sa zlatnim obodom (kao okrugli logo), da se vidi i na svetloj traci pregledača */
+(function () {
+    var link = document.querySelector('link[rel="icon"]');
+    if (!link) return;
+    var img = new Image();
+    img.onload = function () {
+        try {
+            var c = document.createElement('canvas'); c.width = c.height = 128;
+            var x = c.getContext('2d');
+            x.beginPath(); x.arc(64, 64, 62, 0, Math.PI * 2); x.fillStyle = '#0B132B'; x.fill();
+            x.lineWidth = 8; x.strokeStyle = '#F59E0B'; x.stroke();
+            var r = Math.min(76 / img.width, 76 / img.height);
+            var w = img.width * r, h = img.height * r;
+            x.drawImage(img, 64 - w / 2, 64 - h / 2, w, h);
+            link.type = 'image/png';
+            link.href = c.toDataURL('image/png');
+        } catch (e) {}
+    };
+    img.src = link.getAttribute('href');
+})();
+</script>
 </body>
 </html>

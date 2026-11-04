@@ -2,7 +2,7 @@
 <html lang="sr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; frame-src https://www.google.com; connect-src 'self' https://api.web3forms.com https://api.counterapi.dev">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; frame-src https://www.google.com; connect-src 'self' https://api.web3forms.com https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.counterapi.dev">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DN Cargo Vranje | Pouzdan Logistički Partner - Kombi Cerada do 3.5t</title>
@@ -1888,6 +1888,24 @@
             `;
         }
 
+        // Cene za internu procenu (menja se ovde): € po km i € po kg
+        const DN_CENA_KM = 0.45;
+        const DN_CENA_KG = 0.12;
+
+        // Udaljenost u km (drumom) preko besplatnih OpenStreetMap servisa; vraća null ako ne uspe (do ~5 s)
+        function dnDistanceKm(from, to) {
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), 5000);
+            const geo = q => fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q), { signal: ctrl.signal, headers: { 'Accept': 'application/json' } })
+                .then(r => r.json()).then(a => a && a[0] ? a[0].lon + ',' + a[0].lat : Promise.reject(new Error('nema lokacije')));
+            return Promise.all([geo(from), geo(to)])
+                .then(([a, b]) => fetch(`https://router.project-osrm.org/route/v1/driving/${a};${b}?overview=false`, { signal: ctrl.signal }))
+                .then(r => r.json())
+                .then(d => d.routes && d.routes[0] ? Math.round(d.routes[0].distance / 1000) : null)
+                .catch(() => null)
+                .finally(() => clearTimeout(timer));
+        }
+
         function handleCalc(e) {
             e.preventDefault();
             const val = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
@@ -1895,13 +1913,6 @@
             const typeLabel = typeEl.options[typeEl.selectedIndex] ? typeEl.options[typeEl.selectedIndex].text : typeEl.value;
             const weight = parseFloat(val('calc-weight')) || 500;
             const type = typeEl.value;
-
-            let base = 200;
-            if (type === 'zbirno') base = 150;
-            if (type === 'express') base = 350;
-
-            const est = Math.round(base + (weight * 0.12));
-            const estText = `€${est} - €${Math.round(est * 1.15)}`;
 
             // Poruka se prikazuje odmah, slanje mejla ide u pozadini (procena ide samo u mejl dispečeru)
             const out = document.getElementById('calc-output');
@@ -1915,16 +1926,25 @@
             note.textContent = 'Šaljemo upit, trenutak...';
             if (btn) btn.disabled = true;
 
-            dnSendMail(`Upit iz kalkulatora - ${from} → ${to}`, {
-                'Polazište': from,
-                'Odredište': to,
-                'Težina (kg)': weight,
-                'Tip prevoza': typeLabel,
-                'Broj paleta': val('calc-pallets') || '-',
-                'Email': email,
-                'Telefon': val('calc-phone'),
-                'Okvirna procena': estText
-            }, email)
+            dnDistanceKm(from, to).then(km => {
+                // Procena (ide samo u mejl dispečeru): osnova po tipu + težina + kilometraža
+                let base = 200;
+                if (type === 'zbirno') base = 150;
+                if (type === 'express') base = 350;
+                const est = Math.round(base + (weight * DN_CENA_KG) + (km ? km * DN_CENA_KM : 0));
+                const estText = `€${est} - €${Math.round(est * 1.15)}` + (km ? '' : ' (bez kilometraže - udaljenost nije izračunata)');
+                return dnSendMail(`Upit iz kalkulatora - ${from} → ${to}`, {
+                    'Polazište': from,
+                    'Odredište': to,
+                    'Udaljenost (km)': km ? km : 'nije izračunata',
+                    'Težina (kg)': weight,
+                    'Tip prevoza': typeLabel,
+                    'Broj paleta': val('calc-pallets') || '-',
+                    'Email': email,
+                    'Telefon': val('calc-phone'),
+                    'Okvirna procena': estText
+                }, email);
+            })
             .then(() => { note.innerHTML = note.dataset.orig; form.reset(); })
             .catch(err => { note.textContent = (err && err.message === 'throttle') ? 'Molimo sačekajte nekoliko sekundi pre sledećeg slanja.' : 'Slanje nije uspelo. Otvaramo Vaš mejl program da upit pošaljete ručno...'; })
             .finally(() => { if (btn) btn.disabled = false; });
@@ -2591,5 +2611,27 @@
             }, { passive: true });
         })();
     </script>
+<script>
+/* Favicon: znak na tamnoplavoj podlozi sa zlatnim obodom (kao okrugli logo), da se vidi i na svetloj traci pregledača */
+(function () {
+    var link = document.querySelector('link[rel="icon"]');
+    if (!link) return;
+    var img = new Image();
+    img.onload = function () {
+        try {
+            var c = document.createElement('canvas'); c.width = c.height = 128;
+            var x = c.getContext('2d');
+            x.beginPath(); x.arc(64, 64, 62, 0, Math.PI * 2); x.fillStyle = '#0B132B'; x.fill();
+            x.lineWidth = 8; x.strokeStyle = '#F59E0B'; x.stroke();
+            var r = Math.min(76 / img.width, 76 / img.height);
+            var w = img.width * r, h = img.height * r;
+            x.drawImage(img, 64 - w / 2, 64 - h / 2, w, h);
+            link.type = 'image/png';
+            link.href = c.toDataURL('image/png');
+        } catch (e) {}
+    };
+    img.src = link.getAttribute('href');
+})();
+</script>
 </body>
 </html>
